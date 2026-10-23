@@ -23,6 +23,13 @@
   color: #166534;
   opacity: 1;
 }
+.pill.correct-outline,
+.pill.correct-outline:disabled {
+  border: 2px solid #16a34a;
+  background: white;
+  color: #166534;
+  opacity: 1;
+}
 
 /* Svetločervená po nesprávnej odpovedi */
 .pill.answer-wrong,
@@ -164,6 +171,8 @@ function render() {
         b.disabled = true;
         if (answers[i] === null && value === item.correct) {
           b.classList.add('answer-correct');
+          } else if (answers[i] !== null && value === item.correct) {
+  b.classList.add('correct-outline');
         } else if (answers[i] === value) {
           b.classList.add(answers[i] === item.correct ? 'answer-correct' : 'answer-wrong');
         }
@@ -258,6 +267,8 @@ if (answer === null) {
   b.classList.add(
     good ? 'answer-correct' : 'answer-wrong'
   );
+} else if (value === item.correct) {
+  b.classList.add('correct-outline');
 }
 
       b.disabled = true;
