@@ -1,326 +1,946 @@
-<!doctype html><html lang="sk">
+<!doctype html>
+<html lang="sk">
+
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Biofyzika Test</title>
-<link rel="manifest" href="./manifest.webmanifest">
-<link rel="apple-touch-icon" href="./icon-192.png">
-<style>:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#202638;background:#f5f7fb}*{box-sizing:border-box}body{margin:0}.wrap{max-width:850px;margin:45px auto;padding:20px}.panel{background:white;border-radius:22px;padding:clamp(22px,5vw,42px);box-shadow:0 12px 40px #20263812}h1{font-size:clamp(26px,4vw,36px);margin:0 0 12px}h2{font-size:clamp(22px,3vw,29px)}p{color:#647084;line-height:1.5}.choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:30px}.tile{background:#f5f7fc;border:2px solid #e3e8f2;border-radius:18px;padding:24px;text-align:left;cursor:pointer;color:#202638}.tile:hover{border-color:#7a89ee}.tile strong{display:block;font-size:21px}.tile span{display:block;margin-top:10px;color:#647084}.top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.small{font-weight:700;color:#65728b}.statement{display:grid;grid-template-columns:210px minmax(0,1fr);align-items:center;gap:18px;padding:16px 10px;border-bottom:1px solid #e7eaf1}.statement:nth-child(even){background:#f7f8fb}.statement p{font-size:17px;color:#202638;margin:0}.pills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.pill{border:2px solid #dce3ee;background:white;color:#374358;border-radius:30px;padding:10px 5px;font-size:14px;font-weight:700;cursor:pointer}.pill.yes.selected{background:#d7f5e6;border-color:#229b64;color:#176341}.pill.no.selected{background:#ffe2e2;border-color:#dc5555;color:#9b2929}.pill:disabled{cursor:default}.table-head{display:grid;grid-template-columns:210px minmax(0,1fr);gap:18px;padding:12px 10px;font-size:13px;font-weight:750;color:#65728b}.head-pills{display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:center}.feedback{grid-column:2;margin-top:-8px;font-size:14px;font-weight:650}.correct{color:#16824f}.wrong{color:#bf3543}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}button.primary{background:#405de6;color:white;border:0;border-radius:12px;padding:14px 24px;font-size:16px;font-weight:700;cursor:pointer}.secondary{background:#eef1f8;border:0;border-radius:12px;padding:12px 18px;cursor:pointer;font-weight:650;color:#36415c}.notice{margin-top:22px;padding:16px;border-radius:14px;background:#f1f4fa;font-weight:700}.hidden{display:none!important}.hint{font-size:13px;margin-top:22px}@media(max-width:560px){.wrap{margin:12px auto;padding:10px}.statement,.table-head{grid-template-columns:132px minmax(0,1fr);gap:10px;padding-left:3px;padding-right:3px}.pill{font-size:12px;padding:10px 2px}.statement p{font-size:15px}.head-pills{font-size:11px;gap:2px}.feedback{font-size:12px}}.category-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:12px;margin-top:24px}.category-btn{border:2px solid #e3e8f2;background:#f5f7fc;border-radius:14px;padding:20px 12px;font-size:17px;font-weight:750;cursor:pointer;color:#202638}.category-btn:hover{border-color:#405de6;background:#edf0ff}.category-link{display:inline-block;margin-top:14px;color:#405de6}.category-note{padding:16px;background:#f1f4fa;border-radius:14px;margin-top:20px;color:#36415c}.bookmark-btn{margin-top:20px;border:1px solid #d6ddec;background:#fff;border-radius:12px;padding:12px 16px;font-weight:700;color:#40516e;cursor:pointer}.bookmark-btn.saved{background:#fff3d6;border-color:#edc86a;color:#7c5710}.problem-card{margin-top:22px;padding:20px;border:2px solid #e3e8f2;border-radius:16px;background:#fafbff}.problem-card strong{display:block;font-size:20px}.problem-card span{color:#65728b;font-size:14px}.category-btn small{display:block;margin-top:7px;color:#65728b;font-size:12px}.category-card{border:2px solid #e3e8f2;background:#f5f7fc;border-radius:14px;padding:10px;display:flex;flex-direction:column;gap:8px}.category-card .category-btn{border:0;padding:14px 8px;background:transparent}.category-problems{background:#fff;border:1px solid #d6ddec;border-radius:10px;padding:10px 6px;font-weight:700;color:#40516e;cursor:pointer}.tile-group{display:flex;flex-direction:column;gap:8px}.tile-group .tile{flex:1}.tile-problems{border:1px solid #d6ddec;background:#fff;border-radius:12px;padding:12px;font-weight:700;color:#40516e;cursor:pointer}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Biofyzika Test</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+  <style>
+    :root {
+      font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+      color: #202638;
+      background: #f5f7fb
+    }
 
-/* NOVÉ FARBY ODPOVEDÍ */
+    * {
+      box-sizing: border-box
+    }
 
-/* Modrá pred vyhodnotením */
-.pill.yes.selected,
-.pill.no.selected {
-  background: #dbeafe;
-  border-color: #2563eb;
-  color: #1d4ed8;
-}
+    body {
+      margin: 0
+    }
 
-/* Svetlozelená po správnej odpovedi */
-.pill.answer-correct,
-.pill.answer-correct:disabled {
-  background: #dcfce7;
-  border-color: #16a34a;
-  color: #166534;
-  opacity: 1;
-}
-.pill.correct-outline,
-.pill.correct-outline:disabled {
-  border: 2px solid #16a34a;
-  background: white;
-  color: #166534;
-  opacity: 1;
-}
+    .wrap {
+      max-width: 850px;
+      margin: 45px auto;
+      padding: 20px
+    }
 
-/* Svetločervená po nesprávnej odpovedi */
-.pill.answer-wrong,
-.pill.answer-wrong:disabled {
-  background: #fee2e2;
-  border-color: #dc3545;
-  color: #991b1b;
-  opacity: 1;
-}
-.question-comment {
-  color: #858b98;
-  font-size: 12px;
-  font-weight: 400;
-  margin-top: 6px;
-  line-height: 1.5;
-}
-</style></head><body><main class="wrap"><section class="panel" id="home"><h1>Biofyzika Test</h1><p>Vyber si typ otázok. Odpoveď sa vyhodnotí po každej otázke.</p><div class="choices"><div class="tile-group"><button class="tile" onclick="start('multiple')"><strong>Viacero tvrdení</strong><span>Jedna otázka a niekoľko tvrdení. Pri každom vyberieš Správne alebo Nesprávne.</span></button><button class="tile-problems" id="multipleProblemBtn" onclick="openProblems('multiple',-1)">★ Problémové (0)</button></div><button class="tile" onclick="showCategories()"><strong>Správne / Nesprávne</strong><span>Jedno tvrdenie, dve možnosti.</span></button></div><p class="hint">Otázky pre jednotlivé kategórie sa doplnia po sprístupnení zdrojových súborov.</p></section><section class="panel hidden" id="categories"><div class="top"><button class="secondary" onclick="goHome()">← Úvod</button><span class="small">19 kategórií</span></div><h2>Správne / Nesprávne</h2><p>Vyber kategóriu otázok.</p><div class="category-grid" id="categoryGrid"></div></section><section class="panel hidden" id="categoryEmpty"><div class="top"><button class="secondary" onclick="showCategories()">← Kategórie</button><span class="small" id="categoryNumber"></span></div><h2 id="categoryTitle"></h2><div class="category-note">Otázky tejto kategórie ešte nie sú vložené. Odkaz na pôvodný súbor je pripravený nižšie. Keď doplníme otázky a správne odpovede, bude tu fungovať testovanie aj vyhodnotenie.</div><a id="categorySource" class="category-link" href="#" target="_blank" rel="noopener noreferrer">Otvoriť zdroj na Google Drive ↗</a></section><section class="panel hidden" id="quiz"><div class="top"><button class="secondary" onclick="goHome()">← Úvod</button><span class="small" id="counter"></span></div><h2 id="question"></h2><div class="table-head"><div class="head-pills"><span>Správne</span><span>Nesprávne</span></div><span>Tvrdenie</span></div><div id="statements"></div><button class="bookmark-btn" id="bookmark" onclick="toggleBookmark()">☆ Uložiť medzi problémové</button><div class="notice hidden" id="result" aria-live="polite"></div><div class="actions"><button class="secondary" id="previous" onclick="previousQuestion()">← Predošlá otázka</button><button class="primary" id="evaluate" onclick="evaluateAnswers()">Vyhodnotiť</button><button class="primary hidden" id="next" onclick="nextQuestion()">Ďalšia otázka →</button></div></section></main><script>
-// SEM VKLADAJ SVOJE OTÁZKY. true = Správne, false = Nesprávne.
-const QUESTIONS = {
-  multiple: [
-    {question:'Bioimpedančná váha použitá na praktických cvičeniach nemeria:',statements:[
-      {text:'Telesnú hmotnosť',correct:false},
-      {text:'Telesnú výšku',correct:true},
-      {text:'Množstvo viscerálneho tuku',correct:false},
-      {text:'Percentuálny podiel kostrového svalstva',correct:false}
-    ]},
-  {question:'Pri Dopplerovom jave je pozorovateľom detegovaná frekvencia zvuku vyššia ako frekvencia vysielaná zdrojom, ak sa:',statements:[
-      {text:'Zdroj zvuku pohybuje smerom od stojaceho pozorovateľa',correct:false},
-      {text:'Zdroj zvuku a pozorovateľ pohybujú smerom od seba',correct:false},
-      {text:'Zdroj zvuku pohybuje smerom k stojacemu pozorovateľovi',correct:true},
-      {text:'Pozorovateľ pohybuje smerom od stojaceho zdroja zvuku',correct:false}
-    ]},
-    {question:'Unipolárne elektrokardiografické zvody sú:',statements:[
-      {text:'I, II, III',correct:false},
-      {text:'aVR, aVL, aVF',correct:true},
-      {text:'1, 2, 3',correct:false},
-      {text:'V₁, V₂, V₃, V₄, V₅, V₆',correct:true}
-    ]},
-   {question:'Na ultrazvukové vyšetrenie bola použitá sonda s frekvenciou 4 MHz. Ak sa ultrazvuk vo vyšetrovanom tkanive šíri rýchlosťou 1 600 m/s, potom je jeho vlnová dĺžka:',statements:[
-      {text:'64 µm',correct:false},
-      {text:'4 × 10⁻⁴ m',correct:true},
-      {text:'400 mm',correct:false},
-      {text:'400 µm',correct:true}
-    ]},
-]};
+    .panel {
+      background: white;
+      border-radius: 22px;
+      padding: clamp(22px, 5vw, 42px);
+      box-shadow: 0 12px 40px #20263812
+    }
 
-// NÁZVY KATEGÓRIÍ: zmeň iba text v úvodzovkách.
-const CATEGORY_NAMES = [
-  '1 Transport, akčný potenciál','1 Štatistika, BOZP, Jednotky','2 Refrakto, Spektro','3 EKG, srdce','Viskozimetria, Stalagmometria',
-  '4 Rádioaktivita, zobr. metódy','4 Tlak krvi','5 Intenzita osvetlenia','6 Biofyzika zrakového vnímania','Ultrazvuk, Doppler, UZ zobr.',
-  'Mikroklim. faktory, Termometria','Elmag. spetrum, el. prúd','Antropometria','Základy mechaniky','Dozimetria',
-  'Biomechanika pohybu, sluch','Mechanika dýchania','zozbierane ot na sk. a zapocty'
-];
-const CATEGORY_IDS = ["1r9-7qZiA09o-8q8G4arMDGMPkqD6ms8A", "1rUh-weV2Whxja_fbhNkZO3_HNGEJIf9Q", "1ZgPNeQw8sG7p3kBRzVMIYxJG3zxeBuSe", "1f-94yqLSpWU4MmN9y9ihM_s-pu9gSqfH", "1IbgaCOgPs_d5Kng5HfcSJPFv3rgQA0ix", "1-T80EzPwwlCP0kh93ceyUY1MvY6VQZ1B", "1Qm-ZpYmm1yxaA9MW5Pc85LacjZjtxWv1", "1pWNQQ28DSrvtbqxBHaSM_FlR8r3QvrVb", "1sQhrVLsMSQ-TyUr0iygvqLH0F0hSf_WN", "1ooGPvkxBx9AHmof2UQRJ_LqVDGxYo2gQ", "1Wk5biGTiqbYGj6JYVyLl1wYgxdMfMRU8", "1Yt3DOo5Rgqi3rkjF6rvjSbuexnbn_Q0i", "1L8SvWk5NHq7PWlmVlmerbJ2JehyxKYH4", "1hXIlLCeEbcdgV3a4DHRNMxEVFAJhFn8C", "1xK4BjShleeDSJxdDxHu7aERQmxhpmL80", "1ZEktRx6IwMXjQksR9Dlxw_D2y6Go1ScI", "1eqG1-o4HsiRvg21h-EyihRqqtWt66QXc", "1ZEGtgqh1wgmVaubG9nyXgepq_cBxdil4"];
-// Po sprístupnení obsahu vlož otázky každej kategórie do príslušného poľa.
-const CATEGORY_QUESTIONS = Array.from({length:18},()=>[]);
-CATEGORY_QUESTIONS[0] = [
-{question:'1. Hodnota mmembránového potenciálu sa zmení depolarizáciou membrány – potenciálový rozdiel bude menší ako pri pokojovom napätí.', correct:true},
-{question:'2. Hodnota pokojového membránového potenciálu sa zmení depolarizáciou membrány. Potenciálový rozdiel bude menší ako pri pokojovom potenciáli.',correct:true},
-{question:'3. Depolarizácia predstavuje zníženie hodnoty membránového potenciálu a je aj nižšia polarizácia.',correct:true},
-{question:'4. Hyperpolarizácia predstavuje zvýšenie hodnoty membránového potenciálu a je aj vyššia polarizácia.',correct:true},
-{question:'5. Hodnota membránového potenciálu sa zmení pri transpolarizácii membrány – potenciálový rozdiel bude mať opačnú polaritu ako pri pokojovom napätí.',correct:true},
-{question:'6. Vtok iónov chlóru Cl⁻ do bunky vyvolá repolarizáciu membrány.',correct:false},
-{question:'7. Vtok iónov chlóru Cl⁻ do bunky vyvolá hyperpolarizáciu membrány.',correct:true},
-{question:'8. Vznik stupňového potenciálu je iniciovaný výstupom iónov z neurónu.',correct:false},
-{question:'9. Vznik stupňovaného potenciálu je iniciovaný vstupom iónov do neurónu.',correct:true},
-{question:'10. Vznik receptorového potenciálu je iniciovaný výstupom iónov z neurónu.',correct:false},
-{question:'11. Vtok iónov vápnika Ca²⁺ do bunky vyvolá depolarizáciu membrány.',correct:true},
-{question:'12. Vtok iónov vápnika Ca²⁺ do bunky vyvolá repolarizáciu a hyperpolarizáciu membrány.',correct:false},
-{question:'13. Výtok iónov draslíka K⁺ z bunky vyvolá repolarizáciu membrány.',correct:true},
-{question:'14. Výtok iónov draslíka K⁺ z bunky vyvolá depolarizáciu membrány.',correct:false},
-{question:'15. Ión draslíka je prevažne intracelulárny ión.',correct:true},
-{question:'16. Ión draslíka je rovnako zastúpený v extra- aj intracelulárnom prostredí.',correct:false},
-{question:'17. Ión sodíka je prevažne extracelulárny ión.',correct:true},
-{question:'18. Pokojový membránový potenciál je elektrochemický gradient medzi extra- a intracelulárnou kvapalinou.',correct:true,
-  comment:'Presnejšie ide o elektrický potenciálový rozdiel medzi vnútornou a vonkajšou stranou membrány.'},
-{question:'19. Pokojový membránový potenciál je rozdiel koncentrácie kyslíka medzi extra- a intracelulárnou kvapalinou.',correct:false},
-{question:'20. Pokojový membránový potenciál pozorujeme len u vzrušivých buniek (nervových, svalových buniek).',correct:false},
+    h1 {
+      font-size: clamp(26px, 4vw, 36px);
+      margin: 0 0 12px
+    }
 
-];
-let activeCategory=-1;
-let problemMode=false, problemQuestions=[];
-const STORAGE_KEY='biofyzika-problemove-v1';
-function getSaved(){try{const x=JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]');return Array.isArray(x)?x:[]}catch(e){return []}}
-function saveSaved(a){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(a));return true}catch(e){alert('Prehliadač nedovolil uloženie. Skús bežné okno na stálej webovej adrese.');return false}}
-function keyForQuestion(){return (problemMode?current().savedKey:activeCategory>=0?'cat:'+activeCategory+':'+index:'multiple:'+index)}
-function updateBookmark(){const saved=getSaved().some(x=>x.key===keyForQuestion());const b=el('bookmark');b.classList.toggle('saved',saved);b.textContent=saved?'★ Odstrániť z problémových':'☆ Uložiť medzi problémové'}
-function toggleBookmark(){const key=keyForQuestion(),a=getSaved(),pos=a.findIndex(x=>x.key===key);if(pos>=0)a.splice(pos,1);else a.push({key,mode:problemMode?current().originalMode:mode,question:JSON.parse(JSON.stringify(current())),category:problemMode?current().category:activeCategory});if(saveSaved(a))updateBookmark();updateProblemCount()}
-function countProblems(type,cat){return getSaved().filter(x=>type==='multiple'?x.mode==='multiple':x.mode==='single'&&x.category===cat).length}
-function updateProblemCount(){el('multipleProblemBtn').textContent=`★ Problémové (${countProblems('multiple',-1)})`}
-function savedFor(type,cat){return getSaved().filter(x=>type==='multiple'?x.mode==='multiple':x.mode==='single'&&x.category===cat)}
-function openProblems(type,cat){const saved=savedFor(type,cat);if(!saved.length){alert('V tejto kategórii zatiaľ nemáš uložené problémové otázky.');return}problemQuestions=saved.map(x=>({...x.question,savedKey:x.key,originalMode:x.mode,category:x.category}));problemMode=true;mode='problems';index=0;answerHistory={};activeCategory=cat;hideScreens();el('quiz').classList.remove('hidden');render()}
+    h2 {
+      font-size: clamp(22px, 3vw, 29px)
+    }
 
-function hideScreens(){["home","categories","categoryEmpty","quiz"].forEach(id=>el(id).classList.add("hidden"))}
-function showCategories(){hideScreens();el("categories").classList.remove("hidden");const grid=el("categoryGrid");grid.innerHTML="";CATEGORY_IDS.forEach((id,i)=>{const card=document.createElement('div');card.className='category-card';const b=document.createElement('button');b.className='category-btn';b.textContent=CATEGORY_NAMES[i];const small=document.createElement('small');small.textContent=`${CATEGORY_QUESTIONS[i].length} otázok`;b.append(small);b.onclick=()=>openCategory(i);const pb=document.createElement('button');pb.className='category-problems';pb.textContent=`★ Problémové (${countProblems('single',i)})`;pb.onclick=()=>openProblems('single',i);card.append(b,pb);grid.append(card)})}
+    p {
+      color: #647084;
+      line-height: 1.5
+    }
 
-function openCategory(i){problemMode=false;activeCategory=i;answerHistory={};hideScreens();if(CATEGORY_QUESTIONS[i].length){mode="single";index=0;score=0;el("quiz").classList.remove("hidden");render()}else{el("categoryEmpty").classList.remove("hidden");el("categoryNumber").textContent=`${i+1} z 18`;el("categoryTitle").textContent=CATEGORY_NAMES[i];el("categorySource").href=`https://drive.google.com/open?id=${CATEGORY_IDS[i]}`}}
-let mode='multiple',index=0,answers=[],evaluated=false,score=0;
-let answerHistory = {};
-const el=id=>document.getElementById(id);
-function start(m){problemMode=false;activeCategory=-1;mode=m;index=0;score=0;answerHistory={};el('home').classList.add('hidden');el('quiz').classList.remove('hidden');render()}
-function goHome(){problemMode=false;hideScreens();el('home').classList.remove('hidden');updateProblemCount()}
-function questionSet(){if(problemMode)return problemQuestions;return mode==='single' && activeCategory>=0?CATEGORY_QUESTIONS[activeCategory]:QUESTIONS[mode]}
-function current(){return questionSet()[index]}
-function items(){const q=current();return (problemMode?q.originalMode:mode)==='multiple'?q.statements:[{text:q.question,correct:q.correct}]}
-function render() {
-  const saved = answerHistory[index];
-  evaluated = saved?.evaluated ?? false;
-  answers = saved ? [...saved.answers] : Array(items().length).fill(null);
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 30px
+    }
 
-  el('counter').textContent = 'Otázka ' + (index + 1) + ' z ' + questionSet().length;
-  el('question').textContent = current().question;
+    .tile {
+      background: #f5f7fc;
+      border: 2px solid #e3e8f2;
+      border-radius: 18px;
+      padding: 24px;
+      text-align: left;
+      cursor: pointer;
+      color: #202638
+    }
 
-  document.querySelector('.question-comment')?.remove();
-  if (current().comment) {
-    const comment = document.createElement('div');
-    comment.className = 'question-comment';
-    comment.textContent = current().comment;
-    el('question').after(comment);
-  }
+    .tile:hover {
+      border-color: #7a89ee
+    }
 
-  updateBookmark();
-  el('statements').innerHTML = '';
+    .tile strong {
+      display: block;
+      font-size: 21px
+    }
 
-  items().forEach((item, i) => {
-    const div = document.createElement('div');
-    div.className = 'statement';
-    const pills = document.createElement('div');
-    pills.className = 'pills';
+    .tile span {
+      display: block;
+      margin-top: 10px;
+      color: #647084
+    }
 
-    [true, false].forEach(value => {
-      const b = document.createElement('button');
-      b.className = 'pill ' + (value ? 'yes' : 'no');
-      b.textContent = value ? 'S' : 'N';
-      b.setAttribute('aria-label', value ? 'Správne' : 'Nesprávne');
-      b.onclick = () => selectAnswer(i, value);
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap
+    }
+
+    .small {
+      font-weight: 700;
+      color: #65728b
+    }
+
+    .statement {
+      display: grid;
+      grid-template-columns: 210px minmax(0, 1fr);
+      align-items: center;
+      gap: 18px;
+      padding: 16px 10px;
+      border-bottom: 1px solid #e7eaf1
+    }
+
+    .statement:nth-child(even) {
+      background: #f7f8fb
+    }
+
+    .statement p {
+      font-size: 17px;
+      color: #202638;
+      margin: 0
+    }
+
+    .pills {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px
+    }
+
+    .pill {
+      border: 2px solid #dce3ee;
+      background: white;
+      color: #374358;
+      border-radius: 30px;
+      padding: 10px 5px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer
+    }
+
+    .pill.yes.selected {
+      background: #d7f5e6;
+      border-color: #229b64;
+      color: #176341
+    }
+
+    .pill.no.selected {
+      background: #ffe2e2;
+      border-color: #dc5555;
+      color: #9b2929
+    }
+
+    .pill:disabled {
+      cursor: default
+    }
+
+    .table-head {
+      display: grid;
+      grid-template-columns: 210px minmax(0, 1fr);
+      gap: 18px;
+      padding: 12px 10px;
+      font-size: 13px;
+      font-weight: 750;
+      color: #65728b
+    }
+
+    .head-pills {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      text-align: center
+    }
+
+    .feedback {
+      grid-column: 2;
+      margin-top: -8px;
+      font-size: 14px;
+      font-weight: 650
+    }
+
+    .correct {
+      color: #16824f
+    }
+
+    .wrong {
+      color: #bf3543
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 28px
+    }
+
+    button.primary {
+      background: #405de6;
+      color: white;
+      border: 0;
+      border-radius: 12px;
+      padding: 14px 24px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer
+    }
+
+    .secondary {
+      background: #eef1f8;
+      border: 0;
+      border-radius: 12px;
+      padding: 12px 18px;
+      cursor: pointer;
+      font-weight: 650;
+      color: #36415c
+    }
+
+    .notice {
+      margin-top: 22px;
+      padding: 16px;
+      border-radius: 14px;
+      background: #f1f4fa;
+      font-weight: 700
+    }
+
+    .hidden {
+      display: none !important
+    }
+
+    .hint {
+      font-size: 13px;
+      margin-top: 22px
+    }
+
+    @media(max-width:560px) {
+      .wrap {
+        margin: 12px auto;
+        padding: 10px
+      }
+
+      .statement,
+      .table-head {
+        grid-template-columns: 132px minmax(0, 1fr);
+        gap: 10px;
+        padding-left: 3px;
+        padding-right: 3px
+      }
+
+      .pill {
+        font-size: 12px;
+        padding: 10px 2px
+      }
+
+      .statement p {
+        font-size: 15px
+      }
+
+      .head-pills {
+        font-size: 11px;
+        gap: 2px
+      }
+
+      .feedback {
+        font-size: 12px
+      }
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+      gap: 12px;
+      margin-top: 24px
+    }
+
+    .category-btn {
+      border: 2px solid #e3e8f2;
+      background: #f5f7fc;
+      border-radius: 14px;
+      padding: 20px 12px;
+      font-size: 17px;
+      font-weight: 750;
+      cursor: pointer;
+      color: #202638
+    }
+
+    .category-btn:hover {
+      border-color: #405de6;
+      background: #edf0ff
+    }
+
+    .category-link {
+      display: inline-block;
+      margin-top: 14px;
+      color: #405de6
+    }
+
+    .category-note {
+      padding: 16px;
+      background: #f1f4fa;
+      border-radius: 14px;
+      margin-top: 20px;
+      color: #36415c
+    }
+
+    .bookmark-btn {
+      margin-top: 20px;
+      border: 1px solid #d6ddec;
+      background: #fff;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-weight: 700;
+      color: #40516e;
+      cursor: pointer
+    }
+
+    .bookmark-btn.saved {
+      background: #fff3d6;
+      border-color: #edc86a;
+      color: #7c5710
+    }
+
+    .problem-card {
+      margin-top: 22px;
+      padding: 20px;
+      border: 2px solid #e3e8f2;
+      border-radius: 16px;
+      background: #fafbff
+    }
+
+    .problem-card strong {
+      display: block;
+      font-size: 20px
+    }
+
+    .problem-card span {
+      color: #65728b;
+      font-size: 14px
+    }
+
+    .category-btn small {
+      display: block;
+      margin-top: 7px;
+      color: #65728b;
+      font-size: 12px
+    }
+
+    .category-card {
+      border: 2px solid #e3e8f2;
+      background: #f5f7fc;
+      border-radius: 14px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px
+    }
+
+    .category-card .category-btn {
+      border: 0;
+      padding: 14px 8px;
+      background: transparent
+    }
+
+    .category-problems {
+      background: #fff;
+      border: 1px solid #d6ddec;
+      border-radius: 10px;
+      padding: 10px 6px;
+      font-weight: 700;
+      color: #40516e;
+      cursor: pointer
+    }
+
+    .tile-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px
+    }
+
+    .tile-group .tile {
+      flex: 1
+    }
+
+    .tile-problems {
+      border: 1px solid #d6ddec;
+      background: #fff;
+      border-radius: 12px;
+      padding: 12px;
+      font-weight: 700;
+      color: #40516e;
+      cursor: pointer
+    }
+
+    /* NOVÉ FARBY ODPOVEDÍ */
+
+    /* Modrá pred vyhodnotením */
+    .pill.yes.selected,
+    .pill.no.selected {
+      background: #dbeafe;
+      border-color: #2563eb;
+      color: #1d4ed8;
+    }
+
+    /* Svetlozelená po správnej odpovedi */
+    .pill.answer-correct,
+    .pill.answer-correct:disabled {
+      background: #dcfce7;
+      border-color: #16a34a;
+      color: #166534;
+      opacity: 1;
+    }
+
+    .pill.correct-outline,
+    .pill.correct-outline:disabled {
+      border: 2px solid #16a34a;
+      background: white;
+      color: #166534;
+      opacity: 1;
+    }
+
+    /* Svetločervená po nesprávnej odpovedi */
+    .pill.answer-wrong,
+    .pill.answer-wrong:disabled {
+      background: #fee2e2;
+      border-color: #dc3545;
+      color: #991b1b;
+      opacity: 1;
+    }
+
+    .question-comment {
+      color: #858b98;
+      font-size: 12px;
+      font-weight: 400;
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    .quiz-controls {
+      margin-top: 24px;
+    }
+
+    .quiz-main-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .quiz-main-actions .bookmark-btn {
+      margin-top: 0;
+    }
+
+    .quiz-navigation {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 20px;
+      margin-top: 18px;
+    }
+
+    .nav-btn {
+      background: white;
+      border: 2px solid #2563eb;
+      color: #2563eb;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 15px;
+      font-weight: 750;
+      cursor: pointer;
+    }
+
+    .nav-btn:disabled {
+      opacity: .4;
+      cursor: default;
+    }
+
+    .question-count {
+      font-weight: 750;
+      color: #36415c;
+      text-align: center;
+    }
+
+    @media (max-width: 560px) {
+      .quiz-main-actions {
+        flex-wrap: nowrap;
+      }
+
+      .quiz-main-actions .primary,
+      .quiz-main-actions .bookmark-btn {
+        flex: 1;
+        padding: 12px 8px;
+        font-size: 13px;
+      }
+
+      .quiz-navigation {
+        gap: 6px;
+      }
+
+      .nav-btn {
+        padding: 10px 6px;
+        font-size: 12px;
+      }
+
+      .question-count {
+        font-size: 12px;
+        white-space: nowrap;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <section class="panel" id="home">
+      <h1>Biofyzika Test</h1>
+      <p>Vyber si typ otázok. Odpoveď sa vyhodnotí po každej otázke.</p>
+      <div class="choices">
+        <div class="tile-group"><button class="tile" onclick="start('multiple')"><strong>Viacero
+              tvrdení</strong><span>Jedna otázka a niekoľko tvrdení. Pri každom vyberieš Správne alebo
+              Nesprávne.</span></button><button class="tile-problems" id="multipleProblemBtn"
+            onclick="openProblems('multiple',-1)">★ Problémové (0)</button></div><button class="tile"
+          onclick="showCategories()"><strong>Správne / Nesprávne</strong><span>Jedno tvrdenie, dve
+            možnosti.</span></button>
+      </div>
+      <p class="hint">Otázky pre jednotlivé kategórie sa doplnia po sprístupnení zdrojových súborov.</p>
+    </section>
+    <section class="panel hidden" id="categories">
+      <div class="top"><button class="secondary" onclick="goHome()">← Úvod</button><span class="small">19
+          kategórií</span></div>
+      <h2>Správne / Nesprávne</h2>
+      <p>Vyber kategóriu otázok.</p>
+      <div class="category-grid" id="categoryGrid"></div>
+    </section>
+    <section class="panel hidden" id="categoryEmpty">
+      <div class="top"><button class="secondary" onclick="showCategories()">← Kategórie</button><span class="small"
+          id="categoryNumber"></span></div>
+      <h2 id="categoryTitle"></h2>
+      <div class="category-note">Otázky tejto kategórie ešte nie sú vložené. Odkaz na pôvodný súbor je pripravený
+        nižšie. Keď doplníme otázky a správne odpovede, bude tu fungovať testovanie aj vyhodnotenie.</div><a
+        id="categorySource" class="category-link" href="#" target="_blank" rel="noopener noreferrer">Otvoriť zdroj na
+        Google Drive ↗</a>
+    </section>
+    <section class="panel hidden" id="quiz">
+      <div class="top"><button class="secondary" onclick="goHome()">← Úvod</button><span class="small"
+          id="counter"></span></div>
+      <h2 id="question"></h2>
+      <div class="table-head">
+        <div class="head-pills"><span>Správne</span><span>Nesprávne</span></div><span>Tvrdenie</span>
+      </div>
+      <div id="statements"></div>
+      <div class="notice hidden" id="result" aria-live="polite"></div>
+      <div class="quiz-controls">
+        <div class="quiz-main-actions">
+          <button class="primary" id="evaluate" onclick="evaluateAnswers()">Vyhodnotiť</button>
+          <button class="bookmark-btn" id="bookmark" onclick="toggleBookmark()">☆ Uložiť medzi problémové</button>
+        </div>
+        <div class="quiz-navigation">
+          <button class="nav-btn" id="previous" onclick="previousQuestion()">← Predošlá otázka</button>
+          <span class="question-count" id="bottomCounter"></span>
+          <button class="nav-btn" id="next" onclick="nextQuestion()">Ďalšia otázka →</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    // SEM VKLADAJ SVOJE OTÁZKY. true = Správne, false = Nesprávne.
+    const QUESTIONS = {
+      multiple: [
+        {
+          question: 'Bioimpedančná váha použitá na praktických cvičeniach nemeria:', statements: [
+            { text: 'Telesnú hmotnosť', correct: false },
+            { text: 'Telesnú výšku', correct: true },
+            { text: 'Množstvo viscerálneho tuku', correct: false },
+            { text: 'Percentuálny podiel kostrového svalstva', correct: false }
+          ]
+        },
+        {
+          question: 'Pri Dopplerovom jave je pozorovateľom detegovaná frekvencia zvuku vyššia ako frekvencia vysielaná zdrojom, ak sa:', statements: [
+            { text: 'Zdroj zvuku pohybuje smerom od stojaceho pozorovateľa', correct: false },
+            { text: 'Zdroj zvuku a pozorovateľ pohybujú smerom od seba', correct: false },
+            { text: 'Zdroj zvuku pohybuje smerom k stojacemu pozorovateľovi', correct: true },
+            { text: 'Pozorovateľ pohybuje smerom od stojaceho zdroja zvuku', correct: false }
+          ]
+        },
+        {
+          question: 'Unipolárne elektrokardiografické zvody sú:', statements: [
+            { text: 'I, II, III', correct: false },
+            { text: 'aVR, aVL, aVF', correct: true },
+            { text: '1, 2, 3', correct: false },
+            { text: 'V₁, V₂, V₃, V₄, V₅, V₆', correct: true }
+          ]
+        },
+        {
+          question: 'Na ultrazvukové vyšetrenie bola použitá sonda s frekvenciou 4 MHz. Ak sa ultrazvuk vo vyšetrovanom tkanive šíri rýchlosťou 1 600 m/s, potom je jeho vlnová dĺžka:', statements: [
+            { text: '64 µm', correct: false },
+            { text: '4 × 10⁻⁴ m', correct: true },
+            { text: '400 mm', correct: false },
+            { text: '400 µm', correct: true }
+          ]
+        },
+      ]
+    };
+
+    // NÁZVY KATEGÓRIÍ: zmeň iba text v úvodzovkách.
+    const CATEGORY_NAMES = [
+      '1 Transport, akčný potenciál', '1 Štatistika, BOZP, Jednotky', '2 Refrakto, Spektro', '3 EKG, srdce', 'Viskozimetria, Stalagmometria',
+      '4 Rádioaktivita, zobr. metódy', '4 Tlak krvi', '5 Intenzita osvetlenia', '6 Biofyzika zrakového vnímania', 'Ultrazvuk, Doppler, UZ zobr.',
+      'Mikroklim. faktory, Termometria', 'Elmag. spetrum, el. prúd', 'Antropometria', 'Základy mechaniky', 'Dozimetria',
+      'Biomechanika pohybu, sluch', 'Mechanika dýchania', 'zozbierane ot na sk. a zapocty'
+    ];
+    const CATEGORY_IDS = ["1r9-7qZiA09o-8q8G4arMDGMPkqD6ms8A", "1rUh-weV2Whxja_fbhNkZO3_HNGEJIf9Q", "1ZgPNeQw8sG7p3kBRzVMIYxJG3zxeBuSe", "1f-94yqLSpWU4MmN9y9ihM_s-pu9gSqfH", "1IbgaCOgPs_d5Kng5HfcSJPFv3rgQA0ix", "1-T80EzPwwlCP0kh93ceyUY1MvY6VQZ1B", "1Qm-ZpYmm1yxaA9MW5Pc85LacjZjtxWv1", "1pWNQQ28DSrvtbqxBHaSM_FlR8r3QvrVb", "1sQhrVLsMSQ-TyUr0iygvqLH0F0hSf_WN", "1ooGPvkxBx9AHmof2UQRJ_LqVDGxYo2gQ", "1Wk5biGTiqbYGj6JYVyLl1wYgxdMfMRU8", "1Yt3DOo5Rgqi3rkjF6rvjSbuexnbn_Q0i", "1L8SvWk5NHq7PWlmVlmerbJ2JehyxKYH4", "1hXIlLCeEbcdgV3a4DHRNMxEVFAJhFn8C", "1xK4BjShleeDSJxdDxHu7aERQmxhpmL80", "1ZEktRx6IwMXjQksR9Dlxw_D2y6Go1ScI", "1eqG1-o4HsiRvg21h-EyihRqqtWt66QXc", "1ZEGtgqh1wgmVaubG9nyXgepq_cBxdil4"];
+    // Po sprístupnení obsahu vlož otázky každej kategórie do príslušného poľa.
+    const CATEGORY_QUESTIONS = Array.from({ length: 18 }, () => []);
+    CATEGORY_QUESTIONS[0] = [
+      { question: '1. Hodnota mmembránového potenciálu sa zmení depolarizáciou membrány – potenciálový rozdiel bude menší ako pri pokojovom napätí.', correct: true },
+      { question: '2. Hodnota pokojového membránového potenciálu sa zmení depolarizáciou membrány. Potenciálový rozdiel bude menší ako pri pokojovom potenciáli.', correct: true },
+      { question: '3. Depolarizácia predstavuje zníženie hodnoty membránového potenciálu a je aj nižšia polarizácia.', correct: true },
+      { question: '4. Hyperpolarizácia predstavuje zvýšenie hodnoty membránového potenciálu a je aj vyššia polarizácia.', correct: true },
+      { question: '5. Hodnota membránového potenciálu sa zmení pri transpolarizácii membrány – potenciálový rozdiel bude mať opačnú polaritu ako pri pokojovom napätí.', correct: true },
+      { question: '6. Vtok iónov chlóru Cl⁻ do bunky vyvolá repolarizáciu membrány.', correct: false },
+      { question: '7. Vtok iónov chlóru Cl⁻ do bunky vyvolá hyperpolarizáciu membrány.', correct: true },
+      { question: '8. Vznik stupňového potenciálu je iniciovaný výstupom iónov z neurónu.', correct: false },
+      { question: '9. Vznik stupňovaného potenciálu je iniciovaný vstupom iónov do neurónu.', correct: true },
+      { question: '10. Vznik receptorového potenciálu je iniciovaný výstupom iónov z neurónu.', correct: false },
+      { question: '11. Vtok iónov vápnika Ca²⁺ do bunky vyvolá depolarizáciu membrány.', correct: true },
+      { question: '12. Vtok iónov vápnika Ca²⁺ do bunky vyvolá repolarizáciu a hyperpolarizáciu membrány.', correct: false },
+      { question: '13. Výtok iónov draslíka K⁺ z bunky vyvolá repolarizáciu membrány.', correct: true },
+      { question: '14. Výtok iónov draslíka K⁺ z bunky vyvolá depolarizáciu membrány.', correct: false },
+      { question: '15. Ión draslíka je prevažne intracelulárny ión.', correct: true },
+      { question: '16. Ión draslíka je rovnako zastúpený v extra- aj intracelulárnom prostredí.', correct: false },
+      { question: '17. Ión sodíka je prevažne extracelulárny ión.', correct: true },
+      {
+        question: '18. Pokojový membránový potenciál je elektrochemický gradient medzi extra- a intracelulárnou kvapalinou.', correct: true,
+        comment: 'Presnejšie ide o elektrický potenciálový rozdiel medzi vnútornou a vonkajšou stranou membrány.'
+      },
+      { question: '19. Pokojový membránový potenciál je rozdiel koncentrácie kyslíka medzi extra- a intracelulárnou kvapalinou.', correct: false },
+      { question: '20. Pokojový membránový potenciál pozorujeme len u vzrušivých buniek (nervových, svalových buniek).', correct: false },
+
+
+      { question: '21. Receptorový potenciál môžeme definovať ako signál pohybujúci sa neurónom, ktorého amplitúda sa nemení.', correct: false },
+      {
+        question: '22. Receptorový potenciál môžeme definovať ako signál pohybujúci sa neurónom, ktorého amplitúda sa znižuje.', correct: true,
+        comment: 'Receptorový potenciál sa šíri pasívne a jeho amplitúda so vzdialenosťou klesá. Odpoveď PRAVDA je obhájiteľná, ale formulácia „pohybujúci sa neurónom“ nie je presná.'
+      },
+      {
+        question: '23. Akčný potenciál môžeme definovať ako signál pohybujúci sa neurónom, ktorého amplitúda sa nemení.', correct: false,
+        comment: 'Nesprávne označená odpoveď. Akčný potenciál sa za normálnych podmienok šíri bez poklesu amplitúdy. Správne má byť PRAVDA.'
+      },
+      { question: '24. Receptorový potenciál vždy vyvolá vznik akčného potenciálu.', correct: false },
+      {
+        question: '25. Na vzniku akčného potenciálu sa zúčastňujú mechanicky, chemicky a napäťovo riadené kanály.', correct: true,
+        comment: 'Sporná odpoveď. Samotný akčný potenciál vzniká predovšetkým činnosťou napäťovo riadených Na⁺ a K⁺ kanálov. Mechanicky a chemicky riadené kanály môžu vyvolať počiatočnú depolarizáciu.'
+      },
+      { question: '26. Na vzniku akčného potenciálu sa zúčastňujú len mechanicky riadené kanály.', correct: false },
+      {
+        question: '27. Počas akčného potenciálu dochádza k rýchlemu poklesu pokojového potenciálu.', correct: true,
+        comment: 'Formulácia je nepresná. Pri depolarizácii membránový potenciál rastie, napríklad z −70 mV na +30 mV, hoci jeho absolútna hodnota sa spočiatku zmenšuje.'
+      },
+      { question: '28. K zmene receptorového potenciálu na akčný potenciál dochádza vtedy, keď je amplitúda receptorového potenciálu v aktivačnej oblasti neurónu nadprahová.', correct: true },
+      { question: '29. V rovnovážnom stave (pokojový membránový potenciál) je vnútorná plocha bunkovej membrány nabitá kladne.', correct: false },
+      {
+        question: '30. Za prirodzených podmienok sa impulz šíri v rámci jedného nervového vlákna len jedným smerom, od receptora k najbližšej synapse.', correct: true,
+        comment: 'Odpoveď je v bežnom fyziologickom kontexte prijateľná, ale nie každý neurón vedie signál od receptora. Presnejšie by bolo „od miesta vzniku akčného potenciálu k synaptickému zakončeniu“.'
+      },
+
+      { question: '31. Za prirodzených podmienok sa impulz šíri v rámci jedného nervového vlákna len jedným smerom, od synapsy k najbližšiemu receptoru.', correct: false },
+      { question: '32. Príkladom pasívneho transportu látok cez bunkovú membránu je prechod častíc iónovým kanálom.', correct: true },
+      {
+        question: '33. Príkladom aktívneho transportu látok cez bunkovú membránu sú endocytóza, exocytóza a prechod iónovými kanálmi.', correct: true,
+        comment: 'Iónové kanály zabezpečujú pasívny transport iónov podľa elektrochemického gradientu. Aj keď sú napäťovo, mechanicky alebo chemicky riadené, samotný prechod cez kanál nie je aktívnym transportom. Správne je NEPRAVDA'
+      },
+      { question: '34. Aktívny transport látok cez bunkovú membránu spotrebúva energiu.', correct: true },
+      { question: '35. Pri aktívnom transporte látok cez bunkovú membránu nie je potrebný zdroj energie.', correct: false },
+      { question: '36. Látka môže prechádzať bunkovou membránou iba pasívnym transportom.', correct: false },
+      { question: '37. Ak sa pri transporte látok bunkovou membránou nespotrebúva energia, ide o pasívny transport.', correct: true },
+      { question: '38. Vedenie tepla je jedna z foriem transportu látok cez bunkovú membránu.', correct: false },
+      { question: '39. Akčný potenciál možno definovať ako krátko trvajúcu udalosť, pri ktorej pokojový membránový potenciál prudko vzrastie a poklesne.', correct: true },
+      { question: '40. Akčný potenciál ako reakcia na svetelný podnet vzniká najskôr v gangliových bunkách sietnice.', correct: false },
+
+      { question: '41. Akčný potenciál ako reakcia na svetelný podnet vzniká najskôr v amakrinných bunkách sietnice.', correct: true },
+      { question: '42. Akčný potenciál buniek srdcovej svaloviny má podobný tvar ako akčný potenciál pacemakerových buniek.', correct: false },
+      { question: '43. Akčný potenciál sa šíri pozdĺž axónu neurónu.', correct: true },
+      { question: '44. Akčný potenciál, ktorý bol generovaný receptorovým potenciálom, sa šíri po senzorickom nerve. V dôsledku adaptácie sa frekvencia vzniknutých akčných potenciálov pri šírení vzruchu nemení.', correct: true },
+      { question: '45. Akčný potenciál, ktorý bol generovaný receptorovým potenciálom, sa šíri po senzorickom nerve. V dôsledku adaptácie sa frekvencia vzniknutých akčných potenciálov pri šírení vzruchu mení.', correct: false },
+      { question: '46. Akčný potenciál, ktorý bol generovaný receptorovým potenciálom, sa šíri po senzorickom nerve. V dôsledku adaptácie sa frekvencia vzniknutých akčných potenciálov pri šírení vzruchu zvýši.', correct: false },
+      { question: '47. Akčný potenciál, ktorý bol generovaný receptorovým potenciálom, sa šíri po senzorickom nerve. V dôsledku adaptácie sa frekvencia vzniknutých akčných potenciálov pri šírení vzruchu zníži.', correct: false },
+      { question: '48. Rýchlosť difúzie cez membránu závisí od veľkosti koncentračného gradientu.', correct: true },
+      { question: '49. Rýchlosť difúzie cez membránu závisí od veľkosti plochy membrány.', correct: true },
+      { question: '50. Rýchlosť difúzie cez membránu závisí od teploty.', correct: true },
+
+      { question: '51. Rýchlosť difúzie cez membránu je vyššia, ak sa plocha membrány zväčší.', correct: true },
+      { question: '52. Rýchlosť pohybu molekúl pri difúzii závisí od teploty a rozloženia koncentrácií, ale nie od veľkosti častíc.', correct: false },
+      { question: '53. Priebeh osmózy nie je závislý od koncentračného gradientu.', correct: false },
+      { question: '54. Priebeh osmózy závisí len od rozloženia koncentrácií látok, nie od vlastností bunkovej membrány.', correct: false },
+      {
+        question: '55. Pri osmóze dochádza k pohybu molekúl rozpúšťadla z miesta s vyššou koncentráciou na miesto s nižšou koncentráciou rozpúšťadla.', correct: true,
+      },
+      { question: '56. V hypotonickom roztoku prevláda pohyb molekúl vody von z bunky.', correct: false },
+      { question: '57. V hypotonickom roztoku závisí pomer pohybu vody do bunky a von z bunky od teploty okolia.', correct: false },
+      { question: '58. V hypertonickom roztoku prevláda pohyb molekúl vody von z bunky.', correct: true },
+      { question: '59. Ak je podnet silný, akčný potenciál sa bude šíriť po axóne v oboch smeroch.', correct: false },
+      { question: '60. Absolútna refraktérna fáza je interval počas trvania akčného potenciálu, keď žiadny nový stimul nemôže vyvolať novú excitáciu na tom istom mieste membrány.', correct: true },
+
+      { question: '61. Relatívna refraktérna fáza je interval počas trvania akčného potenciálu, keď dostatočne veľký stimul môže vyvolať novú excitáciu na tom istom mieste membrány.', correct: true },
+      { question: '62. Počas absolútnej refraktérnej fázy membrána bunky v danom mieste nereaguje na stimuláciu.', correct: true },
+      {
+        question: '63. Počas relatívnej refraktérnej fázy membrána bunky v danom momente reaguje na každú stimuláciu.', correct: false,
+        comment: 'V pôvodnom zadaní chýbala odpoveď. Pravdepodobne NEPRAVDA, pretože nový akčný potenciál môže vyvolať iba dostatočne silný podnet.'
+      },
+      { question: '64. Horizontálne bunky sietnice reagujú na svetelný podnet depolarizáciou.', correct: false },
+      { question: '65. Podmienkou vzniku difúzie je prítomnosť membrány.', correct: false },
+      { question: '66. Priebeh osmózy závisí len od rozloženia koncentrácií látok, nie od vlastností bunkovej membrány.', correct: false },
+      { question: '67. Príkladmi pasívneho transportu látok cez bunkovú membránu sú difúzia a osmóza.', correct: true },
+      { question: '68. Pri osmóze dochádza k pohybu molekúl rozpúšťadla (vody) z miesta s vyššou na miesto s nižšou koncentráciou rozpúšťadla.', correct: true },
+      { question: '69. Osmózu považujeme za jav podmienený povrchovým napätím kvapalín.', correct: false },
+      { question: '70. Akčný potenciál buniek sínusového uzla nemá plató.', correct: false },
+      {
+        question: '71. Pre predsieňovo-komorový uzol platí:', correct: null,
+        comment: 'NEÚPLNÁ OTÁZKA. Chýba pokračovanie tvrdenia aj odpoveď.'
+      },
+      { question: '72. Fotoreceptory reagujú na svetelný podnet vznikom akčného potenciálu buď na vonkajšom, alebo vnútornom segmente v závislosti od intenzity svetla.', correct: true },
+      { question: '73. Prenos látok cez stenu kapilár nastáva difúziou, filtráciou a rezorpciou.', correct: true },
+      { question: '74. Filtrácia nastáva, keď je onkotický tlak krvnej plazmy väčší ako hydrostatický tlak krvi.', correct: false },
+      { question: '75. Čiary, ktoré na nejakej ploche spájajú body s rovnakou hodnotou potenciálu, nazývame izochory.', correct: false },
+      { question: '76. Čiary, ktoré na nejakej ploche spájajú body s rovnakou hodnotou potenciálu, nazývame izobary.', correct: false },
+      { question: '77. V hypotonickom roztoku charakterizuje pohyb molekúl vody cez bunkovú membránu dynamická rovnováha.', correct: false },
+      { question: '78. V izotonickom roztoku charakterizuje pohyb molekúl vody cez bunkovú membránu dynamická rovnováha.', correct: true },
+      { question: '79. Rýchlosť vedenia vzruchu nervovými vláknami je väčšia pre myelinizované vlákna ako pre nemyelinizované vlákna rovnakej hrúbky.', correct: true },
+      { question: '80. Rýchlosť vedenia vzruchu nervovými vláknami je väčšia pre hrubšie vlákna ako pre tenšie vlákna.', correct: true },
+      { question: '81. Chronaxia je najkratší čas pôsobenia elektrického prúdu, ktorý vyvolá podráždenie.', correct: true },
+      { question: '82. Chronaxia je najnižšia amplitúda elektrického prúdu nekonečného trvania, ktorá vyvolá podráždenie.', correct: false },
+      {
+        question: '83. Príkladom vlastného biosignálu môžu byť iba zmeny faktorov vnútorného prostredia.', correct: true,
+        comment: 'POZOR: Vlastné biosignály zahŕňajú aj elektrické, mechanické či akustické prejavy organizmu. Slovo iba robí tvrdenie nesprávnym.'
+      },
+
+
+    ];
+    let activeCategory = -1;
+    let problemMode = false, problemQuestions = [];
+    const STORAGE_KEY = 'biofyzika-problemove-v1';
+    function getSaved() { try { const x = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); return Array.isArray(x) ? x : [] } catch (e) { return [] } }
+    function saveSaved(a) { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(a)); return true } catch (e) { alert('Prehliadač nedovolil uloženie. Skús bežné okno na stálej webovej adrese.'); return false } }
+    function keyForQuestion() { return (problemMode ? current().savedKey : activeCategory >= 0 ? 'cat:' + activeCategory + ':' + index : 'multiple:' + index) }
+    function updateBookmark() { const saved = getSaved().some(x => x.key === keyForQuestion()); const b = el('bookmark'); b.classList.toggle('saved', saved); b.textContent = saved ? '★ Odstrániť z problémových' : '☆ Uložiť medzi problémové' }
+    function toggleBookmark() { const key = keyForQuestion(), a = getSaved(), pos = a.findIndex(x => x.key === key); if (pos >= 0) a.splice(pos, 1); else a.push({ key, mode: problemMode ? current().originalMode : mode, question: JSON.parse(JSON.stringify(current())), category: problemMode ? current().category : activeCategory }); if (saveSaved(a)) updateBookmark(); updateProblemCount() }
+    function countProblems(type, cat) { return getSaved().filter(x => type === 'multiple' ? x.mode === 'multiple' : x.mode === 'single' && x.category === cat).length }
+    function updateProblemCount() { el('multipleProblemBtn').textContent = `★ Problémové (${countProblems('multiple', -1)})` }
+    function savedFor(type, cat) { return getSaved().filter(x => type === 'multiple' ? x.mode === 'multiple' : x.mode === 'single' && x.category === cat) }
+    function openProblems(type, cat) { const saved = savedFor(type, cat); if (!saved.length) { alert('V tejto kategórii zatiaľ nemáš uložené problémové otázky.'); return } problemQuestions = saved.map(x => ({ ...x.question, savedKey: x.key, originalMode: x.mode, category: x.category })); problemMode = true; mode = 'problems'; index = 0; answerHistory = {}; activeCategory = cat; hideScreens(); el('quiz').classList.remove('hidden'); render() }
+
+    function hideScreens() { ["home", "categories", "categoryEmpty", "quiz"].forEach(id => el(id).classList.add("hidden")) }
+    function showCategories() { hideScreens(); el("categories").classList.remove("hidden"); const grid = el("categoryGrid"); grid.innerHTML = ""; CATEGORY_IDS.forEach((id, i) => { const card = document.createElement('div'); card.className = 'category-card'; const b = document.createElement('button'); b.className = 'category-btn'; b.textContent = CATEGORY_NAMES[i]; const small = document.createElement('small'); small.textContent = `${CATEGORY_QUESTIONS[i].length} otázok`; b.append(small); b.onclick = () => openCategory(i); const pb = document.createElement('button'); pb.className = 'category-problems'; pb.textContent = `★ Problémové (${countProblems('single', i)})`; pb.onclick = () => openProblems('single', i); card.append(b, pb); grid.append(card) }) }
+
+    function openCategory(i) { problemMode = false; activeCategory = i; answerHistory = {}; hideScreens(); if (CATEGORY_QUESTIONS[i].length) { mode = "single"; index = 0; score = 0; el("quiz").classList.remove("hidden"); render() } else { el("categoryEmpty").classList.remove("hidden"); el("categoryNumber").textContent = `${i + 1} z 18`; el("categoryTitle").textContent = CATEGORY_NAMES[i]; el("categorySource").href = `https://drive.google.com/open?id=${CATEGORY_IDS[i]}` } }
+    let mode = 'multiple', index = 0, answers = [], evaluated = false, score = 0;
+    let answerHistory = {};
+    const el = id => document.getElementById(id);
+    function start(m) { problemMode = false; activeCategory = -1; mode = m; index = 0; score = 0; answerHistory = {}; el('home').classList.add('hidden'); el('quiz').classList.remove('hidden'); render() }
+    function goHome() { problemMode = false; hideScreens(); el('home').classList.remove('hidden'); updateProblemCount() }
+    function questionSet() { if (problemMode) return problemQuestions; return mode === 'single' && activeCategory >= 0 ? CATEGORY_QUESTIONS[activeCategory] : QUESTIONS[mode] }
+    function current() { return questionSet()[index] }
+    function items() { const q = current(); return (problemMode ? q.originalMode : mode) === 'multiple' ? q.statements : [{ text: q.question, correct: q.correct }] }
+    function render() {
+      const saved = answerHistory[index];
+      evaluated = saved?.evaluated ?? false;
+      answers = saved ? [...saved.answers] : Array(items().length).fill(null);
+
+      el('counter').textContent = 'Otázka ' + (index + 1) + ' z ' + questionSet().length;
+      el('bottomCounter').textContent = 'Otázka ' + (index + 1) + ' z ' + questionSet().length;
+      el('question').textContent = current().question;
+
+      document.querySelector('.question-comment')?.remove();
+      if (current().comment) {
+        const comment = document.createElement('div');
+        comment.className = 'question-comment';
+        comment.textContent = current().comment;
+        el('question').after(comment);
+      }
+
+      updateBookmark();
+      el('statements').innerHTML = '';
+
+      items().forEach((item, i) => {
+        const div = document.createElement('div');
+        div.className = 'statement';
+        const pills = document.createElement('div');
+        pills.className = 'pills';
+
+        [true, false].forEach(value => {
+          const b = document.createElement('button');
+          b.className = 'pill ' + (value ? 'yes' : 'no');
+          b.textContent = value ? 'S' : 'N';
+          b.setAttribute('aria-label', value ? 'Správne' : 'Nesprávne');
+          b.onclick = () => selectAnswer(i, value);
+
+          if (evaluated) {
+            b.disabled = true;
+            if (answers[i] === null && value === item.correct) {
+              b.classList.add('answer-correct');
+            } else if (answers[i] !== null && value === item.correct) {
+              b.classList.add('correct-outline');
+            } else if (answers[i] === value) {
+              b.classList.add(answers[i] === item.correct ? 'answer-correct' : 'answer-wrong');
+            }
+          } else if (answers[i] === value) {
+            b.classList.add('selected');
+          }
+          pills.append(b);
+        });
+
+        div.append(pills);
+        const p = document.createElement('p');
+        p.textContent = (problemMode ? current().originalMode : mode) === 'single'
+          ? 'Vyber správnosť tvrdenia.' : item.text;
+        div.append(p);
+
+        const feedback = document.createElement('div');
+        feedback.className = 'feedback';
+        if (evaluated) {
+          if (answers[i] === null) {
+            feedback.textContent = 'Nezodpovedané. Správna odpoveď: ' +
+              (item.correct ? 'Správne' : 'Nesprávne');
+          } else if (answers[i] === item.correct) {
+            feedback.classList.add('correct');
+            feedback.textContent = '✓ Správne zodpovedané';
+          } else {
+            feedback.classList.add('wrong');
+            feedback.textContent = '✕ Nesprávne zodpovedané. Správna odpoveď: ' +
+              (item.correct ? 'Správne' : 'Nesprávne');
+          }
+        }
+        div.append(feedback);
+        el('statements').append(div);
+      });
+
+      el('previous').disabled = index === 0;
+      el('next').classList.remove('hidden');
+      el('next').textContent = index === questionSet().length - 1
+        ? 'Späť na úvod' : 'Ďalšia otázka →';
 
       if (evaluated) {
-        b.disabled = true;
-        if (answers[i] === null && value === item.correct) {
-          b.classList.add('answer-correct');
-          } else if (answers[i] !== null && value === item.correct) {
-  b.classList.add('correct-outline');
-        } else if (answers[i] === value) {
-          b.classList.add(answers[i] === item.correct ? 'answer-correct' : 'answer-wrong');
-        }
-      } else if (answers[i] === value) {
-        b.classList.add('selected');
-      }
-      pills.append(b);
-    });
-
-    div.append(pills);
-    const p = document.createElement('p');
-    p.textContent = (problemMode ? current().originalMode : mode) === 'single'
-      ? 'Vyber správnosť tvrdenia.' : item.text;
-    div.append(p);
-
-    const feedback = document.createElement('div');
-    feedback.className = 'feedback';
-    if (evaluated) {
-      if (answers[i] === null) {
-        feedback.textContent = 'Nezodpovedané. Správna odpoveď: ' +
-          (item.correct ? 'Správne' : 'Nesprávne');
-      } else if (answers[i] === item.correct) {
-        feedback.classList.add('correct');
-        feedback.textContent = '✓ Správne zodpovedané';
+        const unanswered = answers.filter(a => a === null).length;
+        el('result').textContent =
+          'Výsledok tejto otázky: ' + saved.correct + ' z ' + items().length + ' správne.' +
+          (unanswered ? ' Nezodpovedané: ' + unanswered + '.' : '');
+        el('result').classList.remove('hidden');
+        el('evaluate').classList.add('hidden');
       } else {
-        feedback.classList.add('wrong');
-        feedback.textContent = '✕ Nesprávne zodpovedané. Správna odpoveď: ' +
-          (item.correct ? 'Správne' : 'Nesprávne');
+        el('result').classList.add('hidden');
+        el('evaluate').classList.remove('hidden');
       }
     }
-    div.append(feedback);
-    el('statements').append(div);
-  });
-
-  el('previous').classList.toggle('hidden', index === 0);
-  el('next').classList.remove('hidden');
-  el('next').textContent = index === questionSet().length - 1
-    ? 'Späť na úvod' : 'Ďalšia otázka →';
-
-  if (evaluated) {
-    const unanswered = answers.filter(a => a === null).length;
-    el('result').textContent =
-      'Výsledok tejto otázky: ' + saved.correct + ' z ' + items().length + ' správne.' +
-      (unanswered ? ' Nezodpovedané: ' + unanswered + '.' : '');
-    el('result').classList.remove('hidden');
-    el('evaluate').classList.add('hidden');
-  } else {
-    el('result').classList.add('hidden');
-    el('evaluate').classList.remove('hidden');
-  }
-}
-function selectAnswer(i, value) {
-  if (evaluated) return;
-  answers[i] = value;
-  const row = el('statements').children[i];
-  [...row.querySelectorAll('.pill')].forEach((b, j) => {
-    b.classList.toggle('selected', (j === 0) === value);
-  });
-  answerHistory[index] = {
-    answers: [...answers],
-    evaluated: false
-  };
-}
-
-function evaluateAnswers() {
-  if (evaluated) return;
-
-  evaluated = true;
-  let correct = 0;
-  let unanswered = 0;
-
-  items().forEach((item, i) => {
-    const answer = answers[i];
-    const good = answer === item.correct;
-    const row = el('statements').children[i];
-    const feedback = row.querySelector('.feedback');
-
-    if (good) correct++;
-    if (answer === null) unanswered++;
-
-    row.querySelectorAll('.pill').forEach((b, j) => {
-      const value = j === 0;
-
-      b.classList.remove('selected');
-
-      
-if (answer === null) {
-  if (value === item.correct) {
-    b.classList.add('answer-correct');
-  }
-} else if (answer === value) {
-  b.classList.add(
-    good ? 'answer-correct' : 'answer-wrong'
-  );
-} else if (value === item.correct) {
-  b.classList.add('correct-outline');
-}
-
-      b.disabled = true;
-    });
-
-    if (answer === null) {
-      feedback.className = 'feedback';
-      feedback.textContent =
-        'Nezodpovedané. Správna odpoveď: ' +
-        (item.correct ? 'Správne' : 'Nesprávne');
-    } else if (good) {
-      feedback.className = 'feedback correct';
-      feedback.textContent = '✓ Správne zodpovedané';
-    } else {
-      feedback.className = 'feedback wrong';
-      feedback.textContent =
-        '✕ Nesprávne zodpovedané. Správna odpoveď: ' +
-        (item.correct ? 'Správne' : 'Nesprávne');
+    function selectAnswer(i, value) {
+      if (evaluated) return;
+      answers[i] = value;
+      const row = el('statements').children[i];
+      [...row.querySelectorAll('.pill')].forEach((b, j) => {
+        b.classList.toggle('selected', (j === 0) === value);
+      });
+      answerHistory[index] = {
+        answers: [...answers],
+        evaluated: false
+      };
     }
-  });
 
-  answerHistory[index] = {
-  answers: [...answers],
-  evaluated: true,
-  correct: correct
-};
+    function evaluateAnswers() {
+      if (evaluated) return;
 
-score = Object.values(answerHistory)
-  .filter(q => q.evaluated)
-  .reduce((sum, q) => sum + q.correct, 0);
+      evaluated = true;
+      let correct = 0;
+      let unanswered = 0;
 
-  el('result').textContent =
-    `Výsledok tejto otázky: ${correct} z ${items().length} správne.` +
-    (unanswered ? ` Nezodpovedané: ${unanswered}.` : '');
+      items().forEach((item, i) => {
+        const answer = answers[i];
+        const good = answer === item.correct;
+        const row = el('statements').children[i];
+        const feedback = row.querySelector('.feedback');
 
-  el('result').classList.remove('hidden');
-  el('evaluate').classList.add('hidden');
-  el('next').classList.remove('hidden');
-}
-function previousQuestion() {
-  if (index > 0) {
-    index--;
-    render();
-  }
-}
-function nextQuestion(){if(index<questionSet().length-1){index++;render()}else{if(activeCategory>=0)showCategories();else goHome();problemMode=false}}
-updateProblemCount();
+        if (good) correct++;
+        if (answer === null) unanswered++;
 
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./service-worker.js")
-      .catch(error => console.error("PWA:", error));
-  });
-}
-</script></body></html>
+        row.querySelectorAll('.pill').forEach((b, j) => {
+          const value = j === 0;
+
+          b.classList.remove('selected');
+
+
+          if (answer === null) {
+            if (value === item.correct) {
+              b.classList.add('answer-correct');
+            }
+          } else if (answer === value) {
+            b.classList.add(
+              good ? 'answer-correct' : 'answer-wrong'
+            );
+          } else if (value === item.correct) {
+            b.classList.add('correct-outline');
+          }
+
+          b.disabled = true;
+        });
+
+        if (answer === null) {
+          feedback.className = 'feedback';
+          feedback.textContent =
+            'Nezodpovedané. Správna odpoveď: ' +
+            (item.correct ? 'Správne' : 'Nesprávne');
+        } else if (good) {
+          feedback.className = 'feedback correct';
+          feedback.textContent = '✓ Správne zodpovedané';
+        } else {
+          feedback.className = 'feedback wrong';
+          feedback.textContent =
+            '✕ Nesprávne zodpovedané. Správna odpoveď: ' +
+            (item.correct ? 'Správne' : 'Nesprávne');
+        }
+      });
+
+      answerHistory[index] = {
+        answers: [...answers],
+        evaluated: true,
+        correct: correct
+      };
+
+      score = Object.values(answerHistory)
+        .filter(q => q.evaluated)
+        .reduce((sum, q) => sum + q.correct, 0);
+
+      el('result').textContent =
+        `Výsledok tejto otázky: ${correct} z ${items().length} správne.` +
+        (unanswered ? ` Nezodpovedané: ${unanswered}.` : '');
+
+      el('result').classList.remove('hidden');
+      el('evaluate').classList.add('hidden');
+      el('next').classList.remove('hidden');
+    }
+    function previousQuestion() {
+      if (index > 0) {
+        index--;
+        render();
+      }
+    }
+    function nextQuestion() { if (index < questionSet().length - 1) { index++; render() } else { if (activeCategory >= 0) showCategories(); else goHome(); problemMode = false } }
+    updateProblemCount();
+
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./service-worker.js")
+          .catch(error => console.error("PWA:", error));
+      });
+    }
+  </script>
+</body>
+
+</html>
