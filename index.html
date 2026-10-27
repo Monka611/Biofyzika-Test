@@ -345,6 +345,41 @@
       gap: 8px
     }
 
+    /* FAREBNÉ OZNAČENIE KATEGÓRIÍ
+   Farbu každej kategórie si vyberám ručne.
+   Farby nezávisia od počtu otázok.
+*/
+
+.category-card.pistaciova {
+  background: #eaf7ef;
+  border-color: #a8d5b5;
+}
+
+.category-card.ruzova {
+  background: #fce8ef;
+  border-color: #eab8cb;
+}
+
+.category-card.levandulova {
+  background: #f0eaff;
+  border-color: #c9b8ed;
+}
+
+.category-card.modra {
+  background: #e5f4ff;
+  border-color: #b2d9ef;
+}
+
+.category-card.vanilkova {
+  background: #fff6d9;
+  border-color: #ead99c;
+}
+
+.category-card.broskynova {
+  background: #ffeddf;
+  border-color: #efc5a8;
+}
+
     .category-card .category-btn {
       border: 0;
       padding: 14px 8px;
@@ -565,6 +600,52 @@
   </main>
   <script>
 
+// ==========================================
+// 🎨 FAREBNÉ OZNAČENIE KATEGÓRIÍ
+// ==========================================
+// Farby nastavujem RUČNE.
+// Kategória bez farby zostáva sivá.
+//
+// Dostupné farby:
+// pistaciova, ruzova, levandulova,
+// modra, vanilkova, broskynova
+//
+// AK CHCEM KATEGÓRIU ZAFARBIŤ:
+// 1. Odstránim // pred príslušným číslom.
+// 2. Vyberiem si názov farby.
+// ==========================================
+
+// VIACERO TVRDENÍ (5 kategórií)
+const MULTIPLE_CATEGORY_COLORS = {
+   1: 'pistaciova',  // PDF 060124
+  // 2: 'ruzova',      // Otázky na 1 zápočet
+  // 3: 'levandulova', // Otázky Bia
+  // 4: 'modra',       // IMG 0045
+  // 5: 'vanilkova',   // Kategória 5
+};
+
+// SPRÁVNE / NESPRÁVNE (18 kategórií)
+const SINGLE_CATEGORY_COLORS = {
+   1: 'ruzova',  // Transport, akčný potenciál
+  // 2: 'pistaciova',      // Štatistika, BOZP, Jednotky
+  // 3: 'levandulova', // Refrakto, Spektro
+  // 4: 'modra',       // EKG, srdce
+  // 5: 'vanilkova',   // Viskozimetria, Stalagmometria
+  // 6: 'broskynova',  // Rádioaktivita, zobrazovacie metódy
+  // 7: 'pistaciova',  // Tlak krvi
+  // 8: 'ruzova',      // Intenzita osvetlenia
+  // 9: 'levandulova', // Biofyzika zrakového vnímania
+  // 10: 'modra',      // Ultrazvuk, Doppler
+  // 11: 'vanilkova',  // Mikroklimatické faktory, Termometria
+  // 12: 'broskynova', // Elektromagnetické spektrum, elektrický prúd
+  // 13: 'pistaciova', // Antropometria
+  // 14: 'ruzova',     // Základy mechaniky
+  // 15: 'levandulova', // Dozimetria
+  // 16: 'modra',      // Biomechanika pohybu, sluch
+  // 17: 'vanilkova',  // Mechanika dýchania
+  // 18: 'broskynova', // Zozbierané otázky na skúšky a zápočty
+};
+
     const MULTIPLE_CATEGORY_NAMES = [
       'PDF 060124',
       'Otázky na 1 započet',
@@ -572,6 +653,7 @@
       'IMG 0045',
       'Kategória 5'
     ];
+
     // SEM VKLADAJ SVOJE OTÁZKY. true = Správne, false = Nesprávne.
     const QUESTIONS = {
       multiple: [
@@ -3287,6 +3369,8 @@
       QUESTIONS.multiple.forEach((questions, i) => {
         const card = document.createElement('div');
         card.className = 'category-card';
+        const farba = MULTIPLE_CATEGORY_COLORS[i + 1];
+if (farba) card.classList.add(farba);
 
         const button = document.createElement('button');
         button.className = 'category-btn';
@@ -3326,7 +3410,7 @@
       render();
     }
     function hideScreens() { ["home", "multipleCategories", "categories", "categoryEmpty", "quiz"].forEach(id => el(id).classList.add("hidden")) }
-    function showCategories() { hideScreens(); el("categories").classList.remove("hidden"); const grid = el("categoryGrid"); grid.innerHTML = ""; CATEGORY_IDS.forEach((id, i) => { const card = document.createElement('div'); card.className = 'category-card'; const b = document.createElement('button'); b.className = 'category-btn'; b.textContent = CATEGORY_NAMES[i]; const small = document.createElement('small'); small.textContent = `${CATEGORY_QUESTIONS[i].length} otázok`; b.append(small); b.onclick = () => openCategory(i); const pb = document.createElement('button'); pb.className = 'category-problems'; pb.textContent = `★ Problémové (${countProblems('single', i)})`; pb.onclick = () => openProblems('single', i); card.append(b, pb); grid.append(card) }) }
+    function showCategories() { hideScreens(); el("categories").classList.remove("hidden"); const grid = el("categoryGrid"); grid.innerHTML = ""; CATEGORY_IDS.forEach((id, i) => { const card = document.createElement('div'); card.className = 'category-card'; const farba = SINGLE_CATEGORY_COLORS[i + 1]; if (farba) card.classList.add(farba); const b = document.createElement('button'); b.className = 'category-btn'; b.textContent = CATEGORY_NAMES[i]; const small = document.createElement('small'); small.textContent = `${CATEGORY_QUESTIONS[i].length} otázok`; b.append(small); b.onclick = () => openCategory(i); const pb = document.createElement('button'); pb.className = 'category-problems'; pb.textContent = `★ Problémové (${countProblems('single', i)})`; pb.onclick = () => openProblems('single', i); card.append(b, pb); grid.append(card) }) }
 
     function openCategory(i) { problemMode = false; activeCategory = i; answerHistory = {}; hideScreens(); if (CATEGORY_QUESTIONS[i].length) { mode = "single"; index = 0; score = 0; el("quiz").classList.remove("hidden"); render() } else { el("categoryEmpty").classList.remove("hidden"); el("categoryNumber").textContent = `${i + 1} z 18`; el("categoryTitle").textContent = CATEGORY_NAMES[i]; el("categorySource").href = `https://drive.google.com/open?id=${CATEGORY_IDS[i]}` } }
     let mode = 'multiple', index = 0, answers = [], evaluated = false, score = 0;
