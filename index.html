@@ -618,8 +618,8 @@
 // VIACERO TVRDENÍ (5 kategórií)
 const MULTIPLE_CATEGORY_COLORS = {
    1: 'pistaciova',  // PDF 060124
-  // 2: 'ruzova',      // Otázky na 1 zápočet
-  // 3: 'levandulova', // Otázky Bia
+   2: 'levandulova',      // Otázky na 1 zápočet
+  // 3: 'ruzova', // Otázky Bia
   // 4: 'modra',       // IMG 0045
   // 5: 'vanilkova',   // Kategória 5
 };
@@ -657,7 +657,9 @@ const SINGLE_CATEGORY_COLORS = {
     // SEM VKLADAJ SVOJE OTÁZKY. true = Správne, false = Nesprávne.
     const QUESTIONS = {
       multiple: [
-        [
+      
+      // PDF 060124 KATEGÓRIA 1
+      [
             {
     question: 'Bioimpedančná váha použitá na praktických cvičeniach nemeria:',
     statements: [
@@ -3166,7 +3168,299 @@ const SINGLE_CATEGORY_COLORS = {
   },
 
         ],
-        [],
+
+        // Otázky na 1 započet KATEGÓRIA 2
+        [
+            {
+    question: 'Relatívnu vlhkosť vzduchu meriame pomocou:',
+    statements: [
+      { text: 'Vlasového vlhkomera', correct: true },
+      { text: 'Assmannovho psychrometra', correct: true },
+      { text: 'Augustovho psychrometra', correct: true },
+      { text: 'Aneroidu', correct: false }
+    ]
+  },
+  {
+    question: 'Akú transmitanciu nastavíme pri kalibrácii spektrofotometra, keď na fotodetektor nedopadá svetlo?',
+    statements: [
+      { text: '0 %', correct: true },
+      { text: '1', correct: false },
+      { text: '100 %', correct: false },
+      { text: '∞', correct: false }
+    ]
+  },
+  {
+    question: 'Rozdiel medzi teplotou tela a strednou teplotnou úrovňou ruky sa nazýva:',
+    statements: [
+      { text: 'Vonkajší teplotný spád', correct: false },
+      { text: 'Vnútorná teplotná diferencia', correct: false },
+      { text: 'Stredná teplotná úroveň', correct: false },
+      { text: 'Vnútorný teplotný spád', correct: true }
+    ]
+  },
+  {
+    question: 'Obraz pozorovaného predmetu vytvorený zdravým ľudským okom na sietnici je:',
+    statements: [
+      { text: 'Skutočný', correct: true },
+      { text: 'Zmenšený', correct: true },
+      { text: 'Neskutočný', correct: false },
+      { text: 'Priamy', correct: false }
+    ]
+  },
+  {
+    question: 'Princíp bimetalového teplomera matematicky popisuje rovnica (l₀ – počiatočná dĺžka, lₜ – výsledná dĺžka, Δt = t − t₀ – rozdiel teplôt, α – koeficient teplotnej dĺžkovej rozťažnosti):',
+    statements: [
+      { text: 'l₀ = lₜ · (1 + α · Δt)', correct: false },
+      { text: 'lₜ = l₀ · (1 + α · t)', correct: false },
+      { text: 'lₜ = l₀ · (1 + α · t₀)', correct: false },
+      { text: 'lₜ = l₀ · (1 + α · Δt)', correct: true }
+    ]
+  },
+  {
+    question: 'Absorpcia svetla prechádzajúceho roztokom podľa Lambertovho-Beerovho zákona závisí od:',
+    statements: [
+      { text: 'Mólového absorpčného koeficientu roztoku', correct: true },
+      { text: 'Farby svetla', correct: true },
+      { text: 'Dĺžky dráhy svetelného lúča v roztoku', correct: true },
+      { text: 'Koncentrácie roztoku', correct: true }
+    ]
+  },
+  {
+    question: 'Na ultrazvukové vyšetrenie bola použitá sonda s frekvenciou 4 MHz. Ak sa ultrazvuk vo vyšetrovanom tkanive šíri rýchlosťou 1 600 m/s, potom je jeho vlnová dĺžka:',
+    statements: [
+      { text: '400 μm', correct: true },
+      { text: '64 μm', correct: false },
+      { text: '4 · 10⁻⁴ m', correct: true },
+      { text: '400 mm', correct: false }
+    ]
+  },
+  {
+    question: 'Pacientovi bol auskultačnou metódou nameraný arteriálny tlak krvi 136/88 mmHg. Platí:',
+    statements: [
+      { text: 'Z uvedených hodnôt nie je možné vypočítať hodnotu stredného arteriálneho tlaku', correct: false },
+      { text: 'Pulzný tlak pacienta je 104 mmHg', correct: false },
+      { text: 'Stredný arteriálny tlak pacienta je 104 mmHg', correct: true },
+      { text: 'Pulzný tlak pacienta je 112 mmHg', correct: false }
+    ]
+  },
+  {
+    question: 'Fyzikálny princíp pulzného oximetra je založený na:',
+    statements: [
+      { text: 'Rovnici kontinuity', correct: false },
+      { text: 'Lambertovom-Beerovom zákone', correct: true },
+      { text: 'Hagen-Poiseuillovom zákone', correct: false },
+      { text: 'Dopplerovom jave', correct: false }
+    ]
+  },
+  {
+    question: 'Kvapková (stalagmometrická) metóda merania povrchového napätia kvapaliny je metóda:',
+    statements: [
+      { text: 'Priama', correct: false },
+      { text: 'Porovnávacia', correct: true },
+      { text: 'Grafická', correct: false },
+      { text: 'Nepriama', correct: true }
+    ]
+  },
+  {
+    question: 'Nepriamo ionizujúce žiarenie:',
+    statements: [
+      { text: 'Sú napríklad fotóny elektromagnetického žiarenia', correct: true },
+      { text: 'Môže byť pozitrón', correct: false },
+      { text: 'Sú elektricky nabité častice', correct: false },
+      { text: 'Môže byť neutrón', correct: true }
+    ]
+  },
+  {
+    question: 'Expozícia X v dozimetrii ionizujúceho žiarenia je definovaná:',
+    statements: [
+      { text: 'Prostredníctvom elektrického náboja vytvoreného vo vzduchu', correct: true },
+      { text: 'Pre röntgenové žiarenie a gama žiarenie', correct: true },
+      { text: 'Pre nepriamo ionizujúce fotónové žiarenie', correct: true },
+      { text: 'Ako pomer energie žiarenia absorbovanej v objemovom elemente látky a hmotnosti tohto elementu', correct: false }
+    ]
+  },
+  {
+    question: 'Index telesnej hmotnosti (BMI) muža s hmotnosťou 120 kg a výškou 200 cm je:',
+    statements: [
+      { text: '30 kg/m²', correct: true },
+      { text: '0,003 kg/m²', correct: false },
+      { text: 'Vyšší ako norma', correct: true },
+      { text: '120 %', correct: false }
+    ]
+  },
+  {
+    question: 'Fyzikálna jednotka dynamickej viskozity (η) je:',
+    statements: [
+      { text: 'kg · m⁻¹ · s⁻¹', correct: true },
+      { text: 'Pa · s', correct: true },
+      { text: 'm² · s⁻¹', correct: false },
+      { text: 'mPa · s', correct: true }
+    ]
+  },
+  {
+    question: 'Na praktických cvičeniach z viskozimetrie sme priamo merali:',
+    statements: [
+      { text: 'Relatívnu viskozitu kvapaliny', correct: false },
+      { text: 'Dynamickú viskozitu kvapaliny', correct: false },
+      { text: 'Kinematickú viskozitu kvapaliny', correct: false },
+      { text: 'Prietokový čas', correct: true }
+    ]
+  },
+  {
+    question: 'Kombináciu dvoch vodičov a ich elektród, ktoré tvoria s meracím zariadením uzavretý elektrický obvod, nazývame:',
+    statements: [
+      { text: 'Wilsonova svorka', correct: false },
+      { text: 'Elektrokardiograf', correct: false },
+      { text: 'Zvod', correct: true },
+      { text: 'Potenciálový rozdiel', correct: false }
+    ]
+  },
+  {
+    question: 'Zariadenie určené na meranie dávky ionizujúceho žiarenia je:',
+    statements: [
+      { text: 'Goniometer', correct: false },
+      { text: 'Detektor', correct: false },
+      { text: 'Dozimeter', correct: true },
+      { text: 'Spektrofotometer', correct: false }
+    ]
+  },
+  {
+    question: 'Kapilárnu eleváciu pozorujeme pri kvapalinách:',
+    statements: [
+      { text: 'Zmáčavých', correct: true },
+      { text: 'Nezmáčavých', correct: false },
+      { text: 'Nad bodom varu', correct: false },
+      { text: 'Zmáčavých aj nezmáčavých', correct: false }
+    ]
+  },
+  {
+    question: 'Na meranie povrchového napätia kvapaliny je možné využiť:',
+    statements: [
+      { text: 'Hagenov-Poiseuillov vzťah', correct: false },
+      { text: 'Vnútorné trenie kvapaliny', correct: false },
+      { text: 'Kapilárne javy', correct: true },
+      { text: 'Stokesov zákon', correct: false }
+    ]
+  },
+  {
+    question: 'Bioimpedančná váha použitá na praktických cvičeniach nemeria:',
+    statements: [
+      { text: 'Telesnú výšku', correct: true },
+      { text: 'Percentuálny podiel kostrového svalstva', correct: false },
+      { text: 'Telesnú hmotnosť', correct: false },
+      { text: 'Množstvo viscerálneho tuku', correct: false }
+    ]
+  },
+  {
+    question: 'Pre aktivitu rádioaktívnej látky platí:',
+    statements: [
+      { text: 'Klesá rovnako rýchlo ako počet nepremenených jadier', correct: true },
+      { text: 'Vypočíta sa ako súčin počtu premenených jadier a konštanty premeny', correct: false },
+      { text: 'Je to rýchlosť rádioaktívnej premeny', correct: true },
+      { text: 'Vypočíta sa ako podiel počtu premenených jadier a konštanty premeny', correct: false }
+    ]
+  },
+  {
+    question: 'Elektrokardiogram je:',
+    statements: [
+      { text: 'Grafický záznam elektrickej činnosti srdca', correct: true },
+      { text: 'Časová závislosť zmien elektrického napätia, ktoré sú dôsledkom akčných potenciálov buniek srdcovej svaloviny', correct: true },
+      { text: 'Metóda merania elektrickej činnosti srdca', correct: false },
+      { text: 'Kváziperiodická krivka', correct: true }
+    ]
+  },
+  {
+    question: 'Povrch tela spravidla vyjadrujeme vo fyzikálnych jednotkách:',
+    statements: [
+      { text: 'kg', correct: false },
+      { text: 'kg/m²', correct: false },
+      { text: 'm', correct: false },
+      { text: 'm²', correct: true }
+    ]
+  },
+  {
+    question: 'V elektrokardiografii predstavuje elektróda pripojená na ľavú nohu:',
+    statements: [
+      { text: 'Kladný pól zvodu I', correct: false },
+      { text: 'Neutrálnu (uzemňovaciu) elektródu', correct: false },
+      { text: 'Kladný pól zvodu III', correct: true },
+      { text: 'Kladný pól zvodu II', correct: true }
+    ]
+  },
+  {
+    question: 'Množstvo energie nevyhnutnej na zabezpečenie funkcií organizmu v bazálnom stave nazývame:',
+    statements: [
+      { text: 'Maximálna kinetická energia', correct: false },
+      { text: 'Minimálna polohová energia', correct: false },
+      { text: 'Balančný metabolizmus', correct: false },
+      { text: 'Bazálny metabolizmus', correct: true }
+    ]
+  },
+  {
+    question: 'Ak pozorujeme kapilárnu eleváciu, potom je hladina kvapaliny v kapiláre:',
+    statements: [
+      { text: 'Vypuklá a vyššia ako hladina kvapaliny v nádobe', correct: false },
+      { text: 'Dutá a nižšia ako hladina kvapaliny v nádobe', correct: false },
+      { text: 'Dutá a vyššia ako hladina kvapaliny v nádobe', correct: true },
+      { text: 'Vypuklá a nižšia ako hladina kvapaliny v nádobe', correct: false }
+    ]
+  },
+  {
+    question: 'Korotkovove fenomény:',
+    statements: [
+      { text: 'Sú zvuky spôsobené turbulentným prúdením krvi v srdci', correct: false },
+      { text: 'Sú počuteľné len vtedy, ak je prúdenie krvi v cieve laminárne', correct: false },
+      { text: 'Sú zvuky spôsobené zatváraním srdcových chlopní', correct: false },
+      { text: 'Sú zvuky spôsobené turbulentným prúdením krvi v čiastočne stlačenej artérii', correct: true }
+    ]
+  },
+  {
+    question: 'V medicíne sa na diagnostické účely môže použiť ultrazvuk s frekvenciou:',
+    statements: [
+      { text: '6 kHz', correct: false },
+      { text: '6 MHz', correct: true },
+      { text: '6 Hz', correct: false },
+      { text: '6 GHz', correct: false }
+    ]
+  },
+  {
+    question: 'Žiarenie gama (γ):',
+    statements: [
+      { text: 'Je prenikavejšie ako alfa žiarenie', correct: true },
+      { text: 'Je tvorené fotónmi', correct: true },
+      { text: 'Je elektromagnetické žiarenie', correct: true },
+      { text: 'Je priťahované k záporne nabitej elektróde detektora s plynovou náplňou', correct: false }
+    ]
+  },
+  {
+    question: 'Na praktických cvičeniach bol číselný výsledok merania viskozity vyjadrený ako:',
+    statements: [
+      { text: 'Priemer ± smerodajná odchýlka', correct: true },
+      { text: 'Relatívna viskozita', correct: false },
+      { text: 'Medián ± smerodajná odchýlka', correct: false },
+      { text: 'Modus ± smerodajná odchýlka', correct: false }
+    ]
+  },
+  {
+    question: 'Počas praktického cvičenia „Meranie rýchlosti toku krvi“ sme merali rýchlosť toku krvi v:',
+    statements: [
+      { text: 'Artérii radialis', correct: true },
+      { text: 'Artérii brachialis', correct: false },
+      { text: 'Artérii ulnaris', correct: false },
+      { text: 'Artérii femoralis', correct: false }
+    ]
+  },
+  {
+    question: 'Ak pozorujeme kapilárnu eleváciu, potom je hladina kvapaliny v kapiláre:',
+    statements: [
+      { text: 'Vypuklá a vyššia ako hladina kvapaliny v nádobe', correct: false },
+      { text: 'Dutá a vyššia ako hladina kvapaliny v nádobe', correct: true },
+      { text: 'Vypuklá a nižšia ako hladina kvapaliny v nádobe', correct: false },
+      { text: 'Dutá a nižšia ako hladina kvapaliny v nádobe', correct: false }
+    ]
+  },
+
+        ],
         [],
         [],
         []
