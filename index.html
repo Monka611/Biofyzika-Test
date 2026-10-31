@@ -620,7 +620,7 @@ const MULTIPLE_CATEGORY_COLORS = {
    1: 'pistaciova',  // PDF 060124
    2: 'levandulova',      // Otázky na 1 zápočet
    3: 'vanilkova', // Otázky Bia
-  // 4: 'modra',       // IMG 0045
+   4: 'modra',       // IMG 0045
   // 5: 'ruzova',   // Kategória 5
 };
 
@@ -4884,7 +4884,344 @@ const SINGLE_CATEGORY_COLORS = {
   },
 
         ],
-        [],
+       
+        // IMG 0045 KATEGÓRIA 4
+        [
+            {
+    question: 'Podmienky, pri ktorých je celková energetická spotreba organizmu rovná bazálnemu metabolizmu, zahŕňajú:',
+    statements: [
+      { text: 'Spánok', correct: false },
+      { text: 'Psychický pokoj', correct: true },
+      { text: 'Fyzický pokoj', correct: true },
+      { text: 'Postabsorpčný stav', correct: true }
+    ]
+  },
+  {
+    question: 'Pri kvalitatívnej analýze biosignálu:',
+    statements: [
+      { text: 'Sú výstupom analýzy biosignálu čísla', correct: false },
+      { text: 'Biosignál opisujeme slovne', correct: true },
+      { text: 'Biosignál posudzujeme vizuálne', correct: true },
+      { text: 'Meriame vybrané parametre biosignálu, napríklad jeho amplitúdu', correct: false }
+    ]
+  },
+  {
+    question: 'Dvojrozmerné ultrazvukové zobrazenie je:',
+    statements: [
+      { text: 'TM (M) mód', correct: false },
+      { text: 'D mód', correct: false },
+      { text: 'B mód', correct: true },
+      { text: 'A mód', correct: false }
+    ]
+  },
+  {
+    question: 'Ak sa v krvi zníži počet červených krviniek, viskozita krvi sa:',
+    statements: [
+      { text: 'Zvýši', correct: false },
+      { text: 'Zdvojnásobí', correct: false },
+      { text: 'Nezmení', correct: false },
+      { text: 'Zníži', correct: true }
+    ]
+  },
+  {
+    question: 'Vnútorný elektrický odpor ľudského tela (krvný obeh, vnútorné orgány) je zvyčajne:',
+    statements: [
+      { text: 'Nižší ako vonkajší elektrický odpor (koža a svalstvo)', correct: true },
+      { text: 'Nižšia ako 1 W', correct: false },
+      { text: 'Vyšší ako vonkajší elektrický odpor (koža a svalstvo)', correct: false },
+      { text: 'Vyššia ako 1 MW', correct: false }
+    ]
+  },
+  {
+    question: 'Krv preteká cievou s polomerom 10 mm stálou rýchlosťou 0,4 m · s⁻¹. Ak zväčšíme polomer cievy na 20 mm, rýchlosť prúdenia bude:',
+    statements: [
+      { text: '1,6 m · s⁻¹', correct: false },
+      { text: '0,2 m · s⁻¹', correct: false },
+      { text: '0,1 m · s⁻¹', correct: true },
+      { text: '0,8 m · s⁻¹', correct: false }
+    ]
+  },
+  {
+    question: 'Fyzikálny princíp pulzného oximetra je založený na:',
+    statements: [
+      { text: 'Dopplerovom jave', correct: false },
+      { text: 'Lambertovom-Beerovom zákone', correct: true },
+      { text: 'Rovnici kontinuity', correct: false },
+      { text: 'Hagen-Poiseuillovom zákone', correct: false }
+    ]
+  },
+  {
+    question: 'Pre povrchové napätie platí:',
+    statements: [
+      { text: 'Má význam v procese výmeny dýchacích plynov v pľúcnych alveolách', correct: true },
+      { text: 'Znižuje sa adsorpciou povrchovo aktívnej látky', correct: true },
+      { text: 'Kvapková metóda dávkovania liekov využíva jeho existenciu', correct: true },
+      { text: 'Pre danú kvapalinu v daných mikroklimatických podmienkach je konštantné', correct: true }
+    ]
+  },
+  {
+    question: 'Expozičná rýchlosť v dozimetrii ionizujúceho žiarenia:',
+    statements: [
+      { text: 'Je definovaná ako Ẋ = dE/dt (E je energia, t je čas)', correct: false },
+      { text: 'Je stredný prírastok expozície v určitom časovom intervale', correct: true },
+      { text: 'Má fyzikálnu jednotku A/kg', correct: true },
+      { text: 'Je definovaná ako Ẋ = dX/dt (X je expozícia, t je čas)', correct: true }
+    ]
+  },
+  {
+    question: 'Pri Dopplerovom jave je pozorovateľom detegovaná frekvencia zvuku vyššia ako frekvencia vysielaná zdrojom, ak sa:',
+    statements: [
+      { text: 'Zdroj zvuku a pozorovateľ pohybujú smerom od seba', correct: false },
+      { text: 'Zdroj zvuku pohybuje smerom k stojacemu pozorovateľovi', correct: true },
+      { text: 'Pozorovateľ pohybuje smerom od stojaceho zdroja zvuku', correct: false },
+      { text: 'Zdroj zvuku pohybuje smerom od stojaceho pozorovateľa', correct: false }
+    ]
+  },
+  {
+    question: 'Dôsledkom povrchového napätia kvapaliny je:',
+    statements: [
+      { text: 'Viskozita', correct: false },
+      { text: 'Laminárne prúdenie', correct: false },
+      { text: 'Osmóza', correct: false },
+      { text: 'Kapilárny tlak', correct: true }
+    ]
+  },
+  {
+    question: 'Povrchové napätie je spôsobené:',
+    statements: [
+      { text: 'Hustotou kvapaliny', correct: false },
+      { text: 'Vnútorným trením kvapaliny', correct: false },
+      { text: 'Medzimolekulovými kohéznymi silami v kvapaline', correct: true },
+      { text: 'Hydrostatickým tlakom kvapaliny', correct: false }
+    ]
+  },
+  {
+    question: 'Pacientovi bol auskultačnou metódou nameraný arteriálny tlak krvi 136/88 mmHg. Platí:',
+    statements: [
+      { text: 'Stredný arteriálny tlak pacienta je 104 mmHg', correct: true },
+      { text: 'Z uvedených hodnôt nie je možné vypočítať hodnotu stredného arteriálneho tlaku', correct: false },
+      { text: 'Pulzný tlak pacienta je 112 mmHg', correct: false },
+      { text: 'Pulzný tlak pacienta je 104 mmHg', correct: false }
+    ]
+  },
+  {
+    question: 'Na ultrazvukové vyšetrenie bola použitá sonda s frekvenciou 4 MHz. Ak sa ultrazvuk vo vyšetrovanom tkanive šíri rýchlosťou 1 600 m/s, potom je jeho vlnová dĺžka:',
+    statements: [
+      { text: '400 μm', correct: true },
+      { text: '64 μm', correct: false },
+      { text: '4 · 10⁻⁴ m', correct: true },
+      { text: '400 mm', correct: false }
+    ]
+  },
+  {
+    question: 'Elektrický odpor sa rovná:',
+    statements: [
+      { text: 'Prevrátenej hodnote elektrickej vodivosti', correct: true },
+      { text: 'Podielu elektrického napätia a elektrického prúdu', correct: true },
+      { text: 'Súčinu elektrického napätia a elektrického prúdu', correct: false },
+      { text: 'Súčinu rezistivity a dĺžky vodiča, deleného plochou prierezu vodiča', correct: true }
+    ]
+  },
+  {
+    question: 'Elektrická vodivosť kovového vodiča je:',
+    statements: [
+      { text: 'Prevrátená hodnota elektrického odporu', correct: true },
+      { text: 'Podiel elektrického prúdu pretekajúceho vodičom a elektrického napätia na vodiči', correct: true },
+      { text: 'Pomer elektrického odporu a elektrického napätia na vodiči', correct: false },
+      { text: 'Súčin elektrického prúdu pretekajúceho vodičom a elektrického napätia na vodiči', correct: false }
+    ]
+  },
+  {
+    question: 'V elektrokardiografii predstavuje elektróda pripojená na ľavú nohu:',
+    statements: [
+      { text: 'Kladný pól zvodu I', correct: false },
+      { text: 'Kladný pól zvodu III', correct: true },
+      { text: 'Kladný pól zvodu II', correct: true },
+      { text: 'Neutrálnu (uzemňovaciu) elektródu', correct: false }
+    ]
+  },
+  {
+    question: 'Absorbovaná dávka D v dozimetrii ionizujúceho žiarenia je definovaná ako:',
+    statements: [
+      { text: 'D = dĒ/dm (Ē je stredná energia, m je hmotnosť)', correct: true },
+      { text: 'Pomer energie žiarenia dopadnutej na objemový element látky a jeho hmotnosti', correct: false },
+      { text: 'Pomer strednej energie ionizujúceho žiarenia absorbovanej objemovým elementom látky a jeho hmotnosti', correct: true },
+      { text: 'D = dm/dĒ (Ē je stredná energia, m je hmotnosť)', correct: false }
+    ]
+  },
+  {
+    question: 'Pri správnom meraní Ubbelohdeho kapilárnym viskozimetrom musia byť dodržané nasledovné podmienky:',
+    statements: [
+      { text: 'Laminárne prúdenie v kapiláre', correct: true },
+      { text: 'V kapiláre nesmú byť bubliny', correct: true },
+      { text: 'Konštantná teplota meranej kvapaliny', correct: true },
+      { text: 'Turbulentné prúdenie v kapiláre', correct: false }
+    ]
+  },
+  {
+    question: 'Povrchové napätie kvapaliny:',
+    statements: [
+      { text: 'Závisí od objemu kvapaliny v nádobe', correct: false },
+      { text: 'Závisí priamo úmerne od plochy povrchovej vrstvy kvapaliny', correct: false },
+      { text: 'Závisí nepriamo úmerne od plochy povrchovej vrstvy kvapaliny', correct: false },
+      { text: 'Nezávisí od plochy povrchovej vrstvy kvapaliny', correct: true }
+    ]
+  },
+  {
+    question: 'Na obrázku je výrez predného panela beta gama dozimetra používaného na praktických cvičeniach. Symbol „Ẋ“ reprezentuje:',
+    statements: [
+      { text: 'Príkon ekvivalentnej dávky', correct: false },
+      { text: 'Absorbovanú dávku', correct: false },
+      { text: 'Expozičný príkon', correct: true },
+      { text: 'Expozíciu', correct: false }
+    ]
+  },
+  {
+    question: 'Pri amplitúdovej analýze elektrokardiografickej krivky je:',
+    statements: [
+      { text: 'Výška výchylky kladná hodnota', correct: true },
+      { text: 'Výška aj hĺbka výchylky kladná hodnota', correct: false },
+      { text: 'Hĺbka výchylky kladná hodnota', correct: false },
+      { text: 'Hĺbka výchylky záporná hodnota', correct: true }
+    ]
+  },
+  {
+    question: 'Meranie odporu, ktorý kladie kvapalina otáčavému pohybu telesa, sa využíva vo viskozimetroch:',
+    statements: [
+      { text: 'Telieskových', correct: false },
+      { text: 'Rotačných', correct: true },
+      { text: 'Vibračných', correct: false },
+      { text: 'Kapilárnych', correct: false }
+    ]
+  },
+  {
+    question: 'Beta gama dozimeter používaný na praktických cvičeniach má na zadnej stene hliníkový kryt. Ak ho ponecháme na dozimetri, môžeme detegovať:',
+    statements: [
+      { text: 'Gama častice', correct: true },
+      { text: 'Príkon ekvivalentnej dávky', correct: true },
+      { text: 'Beta častice spolu s gama časticami', correct: false },
+      { text: 'Expozičný príkon', correct: true }
+    ]
+  },
+  {
+    question: 'Na praktickom cvičení z ultrazvukového zobrazovania bol použitý mód zobrazenia:',
+    statements: [
+      { text: 'B', correct: true },
+      { text: 'A', correct: false },
+      { text: 'M', correct: false },
+      { text: 'C', correct: false }
+    ]
+  },
+  {
+    question: 'Nepriamo ionizujúce žiarenie:',
+    statements: [
+      { text: 'Sú napríklad fotóny elektromagnetického žiarenia', correct: true },
+      { text: 'Sú elektricky nabité častice', correct: false },
+      { text: 'Môže byť neutrón', correct: true },
+      { text: 'Môže byť pozitrón', correct: false }
+    ]
+  },
+  {
+    question: 'Ak pozorujeme kapilárnu eleváciu, potom je hladina kvapaliny v kapiláre:',
+    statements: [
+      { text: 'Vypuklá a vyššia ako hladina kvapaliny v nádobe', correct: false },
+      { text: 'Dutá a vyššia ako hladina kvapaliny v nádobe', correct: true },
+      { text: 'Vypuklá a nižšia ako hladina kvapaliny v nádobe', correct: false },
+      { text: 'Dutá a nižšia ako hladina kvapaliny v nádobe', correct: false }
+    ]
+  },
+  {
+    question: 'Rádioaktívne nuklidy sú jadrá, ktoré:',
+    statements: [
+      { text: 'Môžu emitovať elektróny', correct: true },
+      { text: 'Môžu emitovať fotóny', correct: true },
+      { text: 'Môžu emitovať pozitróny', correct: true },
+      { text: 'Sú stabilné', correct: false }
+    ]
+  },
+  {
+    question: 'Unipolárne elektrokardiografické zvody sú:',
+    statements: [
+      { text: 'I, II, III', correct: false },
+      { text: 'aVR, aVL, aVF', correct: true },
+      { text: '1, 2, 3', correct: false },
+      { text: 'V₁, V₂, V₃, V₄, V₅, V₆', correct: true }
+    ]
+  },
+  {
+    question: 'Podľa Ohmovho zákona:',
+    statements: [
+      { text: 'Elektrický prúd so znižujúcim sa elektrickým napätím rastie', correct: false },
+      { text: 'Elektrický prúd so znižujúcim sa elektrickým napätím klesá', correct: true },
+      { text: 'Elektrický prúd so zvyšujúcim sa elektrickým napätím rastie', correct: true },
+      { text: 'Elektrický prúd so zvyšujúcim sa elektrickým napätím klesá', correct: false }
+    ]
+  },
+  {
+    question: 'Hrudníkové elektrokardiografické zvody sú:',
+    statements: [
+      { text: 'V₁, V₂, V₃, V₄, V₅, V₆', correct: true },
+      { text: '1, 2, 3', correct: false },
+      { text: 'aVR, aVL, aVF', correct: false },
+      { text: 'I, II, III', correct: false }
+    ]
+  },
+  {
+    question: 'Efektívna dávka E v dozimetrii ionizujúceho žiarenia:',
+    statements: [
+      { text: 'Má fyzikálnu jednotku gray', correct: false },
+      { text: 'Sa pre celé telo počíta ako súčet čiastkových efektívnych dávok pre jednotlivé orgány', correct: true },
+      { text: 'Je stredná absorbovaná dávka v tkanive alebo orgáne vynásobená príslušným tkanivovým váhovým faktorom wₜ', correct: false },
+      { text: 'Je ekvivalentná dávka v tkanive alebo orgáne vynásobená príslušným tkanivovým váhovým faktorom wₜ', correct: true }
+    ]
+  },
+  {
+    question: 'Kapilárnu eleváciu pozorujeme pri kvapalinách:',
+    statements: [
+      { text: 'Zmáčavých aj nezmáčavých', correct: false },
+      { text: 'Zmáčavých', correct: true },
+      { text: 'Nezmáčavých', correct: false },
+      { text: 'Nad bodom varu', correct: false }
+    ]
+  },
+  {
+    question: 'Negatívne beta žiarenie (β⁻):',
+    statements: [
+      { text: 'Je tvorené elektrónmi', correct: true },
+      { text: 'Môže byť absorbované hliníkovou vrstvou', correct: true },
+      { text: 'Je tvorené negatívnymi iónmi', correct: false },
+      { text: 'Je prenikavejšie ako alfa žiarenie', correct: true }
+    ]
+  },
+  {
+    question: 'Index telesnej hmotnosti (BMI) muža s hmotnosťou 120 kg a výškou 200 cm je:',
+    statements: [
+      { text: '120 %', correct: false },
+      { text: 'Vyšší ako norma', correct: true },
+      { text: '0,003 kg/m²', correct: false },
+      { text: '30 kg/m²', correct: true }
+    ]
+  },
+  {
+    question: 'Kvapka sa od ústia kapiláry stalagmometra odtrhne, ak je:',
+    statements: [
+      { text: 'Sila povrchového napätia prekonaná hydrostatickým tlakom', correct: false },
+      { text: 'Sila povrchového napätia prekonaná hustotou kvapaliny', correct: false },
+      { text: 'Hmotnosť kvapky prekonaná silou povrchového napätia', correct: false },
+      { text: 'Sila povrchového napätia prekonaná tiažou kvapky', correct: true }
+    ]
+  },
+  {
+    question: 'Elektrickú os srdca počas komplexu QRS konštruujeme tak, že na strany Einthovenovho trojuholníka zakreslíme vektory, ktoré predstavujú:',
+    statements: [
+      { text: 'Absolútnu hodnotu súčtu amplitúd počas komplexu QRS v zodpovedajúcich zvodoch', correct: false },
+      { text: 'Výšku kmitov R v zodpovedajúcich zvodoch', correct: false },
+      { text: 'Súčet amplitúd počas komplexu QRS v zodpovedajúcich zvodoch', correct: true },
+      { text: 'Rozdiel kladných amplitúd počas komplexu QRS v zodpovedajúcich zvodoch', correct: false }
+    ]
+  },
+
+        ],
         []
       ]
     };
